@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Hellojsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h4>Hello from sashokdu</h4>
-<h3>WORLD</h3>
+
 </body>
 </html>
