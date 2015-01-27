@@ -7,18 +7,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-	@RequestMapping("/registration")
+	@RequestMapping("/signup")
 	public ModelAndView registration() {
 
 		String message1 = "Registration:";
-		return new ModelAndView("registration", "message", message1);
+		return new ModelAndView("signup", "message", message1);
 	}
 	
-	@RequestMapping("/signin")
+	@RequestMapping("/login")
 	public ModelAndView signin()
 	{
-		String message2 = "Signin";
-		return new ModelAndView("signin", "message", message2);
+		String message2 = "Log In";
+		return new ModelAndView("login", "message", message2);
 	}
 	
 
