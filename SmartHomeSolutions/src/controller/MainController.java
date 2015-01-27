@@ -10,10 +10,17 @@ public class MainController {
 	@RequestMapping("/registration")
 	public ModelAndView registration() {
 
-		String message = "Registration:";
-		System.out.println(message);
-		return new ModelAndView("registration", "message", message);
+		String message1 = "Registration:";
+		return new ModelAndView("registration", "message", message1);
 	}
+	
+	@RequestMapping("/signin")
+	public ModelAndView signin()
+	{
+		String message2 = "Signin";
+		return new ModelAndView("signin", "message", message2);
+	}
+	
 
 }
 

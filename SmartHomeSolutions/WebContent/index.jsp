@@ -4,16 +4,11 @@
 </head>
 <body>
 	
-	<br>
-	  Log in:
-	<input type="text" name="login" value="" maxlength="90" style="width:100px;">
-	
-	<br>
-	Password:
-	<input type="text" name="password" value="" maxlength="90" style="width:100px;">
-	
+	<a href="signin.html">signin</a>
 	<br>
 	<a href="registration.html">registration</a>
+	<br>
+	
 	
 </body>
 </html>
