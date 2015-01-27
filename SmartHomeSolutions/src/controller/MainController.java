@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
 
 	@RequestMapping("/registration")
-	public ModelAndView helloWorld() {
+	public ModelAndView registration() {
 
 		String message = "Registration:";
 		System.out.println(message);
