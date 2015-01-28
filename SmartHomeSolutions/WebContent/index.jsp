@@ -7,10 +7,16 @@
         <meta name="keywords" content="smart house, smart home" />
         
 
-        <link rel="stylesheet" type="text/css" href="WEB-INF/css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="WEB-INF/css/style1.css" />
-	
-		<script type="text/javascript" src="WEB-INF/js/modernizr.custom.86080.js"></script>
+       <!--   <link rel="stylesheet" type="text/css" href="/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="/context/css/style1.css" /> -->
+        
+        
+	<style>
+   <%@include file='/WEB-INF/css/demo.css' %>
+   <%@include file='/WEB-INF/css/style1.css' %>
+   </style>
+
+		<script type="text/javascript" src="/WEB-INF/js/modernizr.custom.86080.js"></script>
     </head>
     <body id="page">
         <ul class="cb-slideshow">
@@ -21,16 +27,14 @@
             <li><span>Image 05</span></li>
             <li><span>Image 06</span></li>
         </ul>
-		<ul class="cb-slideshow">
-            <li><div><h3>Smart Home Solutions</h3></div></li>
-        </ul>
+		
 		
 		    <div class="container">
         
             <div class="codrops-top">
                 
                 <span class="right">
-                    <a href="login.html" ><strong>Log In</strong></a>
+                    <a href="login.jsp" ><strong>Log In</strong></a>
                     <a href="signup.html" ><strong>Sign Up</strong></a>
                 </span>
                 
@@ -39,6 +43,7 @@
 			
 		
             <header>
+           
                 <H1>Smart Home Solutions</H1>
                 <h2>Ideas for your home</h2>
 
