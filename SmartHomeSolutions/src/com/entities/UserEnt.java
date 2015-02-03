@@ -9,7 +9,7 @@ private String login;
 private String password;
 private String adress;
 private String phone;
-private String name;
+private String username;
 private String mail;
 
 public UserEnt(Integer id, String log, String pas, String adr, String pho, String nam, String mai)
@@ -19,7 +19,7 @@ this.login = log;
 this.password = pas;
 this.adress = adr;
 this.phone = pho;
-this.name = nam;
+this.username = nam;
 this.mail = mai;
 };
 
@@ -28,7 +28,7 @@ public String getLogin(){return this.login;};
 public String getPassword(){return this.password;};	
 public String getAdress(){return this.adress;};	
 public String getPhone(){return this.phone;};	
-public String getName(){return this.name;};	
+public String getName(){return this.username;};	
 public String getMail(){return this.mail;};	
 
 @Override
@@ -38,7 +38,7 @@ public String toString() {
     		" password: " + this.password + 
     		" adress: " + this.adress + 
     		" phone: " + this.phone + 
-    		" name: " + this.name + 
+    		" name: " + this.username + 
     		" mail: " + this.mail;
 };
 
