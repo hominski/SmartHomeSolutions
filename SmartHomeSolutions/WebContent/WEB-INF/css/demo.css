@@ -44,6 +44,7 @@ caption,th {
 h1,h2,h3,h4,h5,h6 {
 	font-size:100%;
 	font-weight:normal;
+	color: #FFFFFF;
 }
 q:before,q:after {
 	content:'';
@@ -82,8 +83,8 @@ bottom: 30px;
 left: 0px;
 width: 100%;
 text-align: center;
-opacity: 0;
-color: #fff;
+opacity: 100;
+color: #FFFFFF;
 font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
 font-size: 120px;
 padding: 0;
@@ -127,7 +128,7 @@ line-height: 200px;
 	font-size: 11px;
 	width: 100%;
 	background: #000;
-	opacity: 0.9;
+	opacity: 100;
 	text-transform: uppercase;
 	z-index: 9999;
 	position: relative;
@@ -151,6 +152,7 @@ line-height: 200px;
 .codrops-top span.right a{
 	float: none;
 	display: inline;
+	
 }
 
 p.codrops-demos{

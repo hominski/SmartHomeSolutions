@@ -15,7 +15,6 @@
    <%@include file='/WEB-INF/css/demo.css' %>
    <%@include file='/WEB-INF/css/style1.css' %>
    </style>
-
 		<script type="text/javascript" src="/WEB-INF/js/modernizr.custom.86080.js"></script>
     </head>
     <body id="page">
@@ -34,8 +33,8 @@
             <div class="codrops-top">
                 
                 <span class="right">
-                    <a href="login.jsp" ><strong>Log In</strong></a>
-                    <a href="signup.html" ><strong>Sign Up</strong></a>
+                    <a href="login.jsp" >Log In</a>
+                    <a href="signup.html" >Sign Up</a>
                 </span>
                 
             <div class="clr"></div>
