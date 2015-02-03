@@ -33,7 +33,7 @@
             <div class="codrops-top">
                 
                 <span class="right">
-                    <a href="login.jsp" >Log In</a>
+                    <a href="login.html" >Log In</a>
                     <a href="signup.html" >Sign Up</a>
                 </span>
                 
