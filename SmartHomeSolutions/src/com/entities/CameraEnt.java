@@ -6,11 +6,11 @@ public class CameraEnt implements Serializable{
 	
 	private Integer camid;
 	private boolean isActiveCam;
-	private Integer camip;
+	private String camip;
 	private Integer roomid;
 	private Integer typeid;
 	
-	public CameraEnt(Integer cid, boolean act, Integer cip, Integer rid, Integer tid){
+	public CameraEnt(Integer cid, boolean act, String cip, Integer rid, Integer tid){
 		this.camid = cid;
 		this.isActiveCam = act;
 		this.camip = cip;
@@ -26,7 +26,7 @@ public class CameraEnt implements Serializable{
    return this.isActiveCam;   
    }
    
-   public Integer getCamIp(){
+   public String getCamIp(){
    return this.camip;
    }
    
