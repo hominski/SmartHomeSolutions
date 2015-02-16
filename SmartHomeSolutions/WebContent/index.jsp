@@ -1,3 +1,7 @@
+    <%@page contentType="text/html" pageEncoding="UTF-8" import="com.*" import="com.entities.*"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+    <html>
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
@@ -47,6 +51,24 @@
                 <h2>Ideas for your home</h2>
 
             </header>
+            
+           
+            
         </div>
+        
+                 <h1>All Users:</h1>
+        <jsp:useBean class="com.dao.DAO" id="myDAO" scope="application"/>
+        <table border="1">
+            <%
+                        for (UserEnt e : DAO.getAllEmp()) {
+            %>
+            <tr>
+                <td><%=e.getName()%></td>
+                <td><%=e.getLogin()%></td>
+            </tr>
+            <%
+                        }
+            %>
+        </table>
     </body>
 </html>

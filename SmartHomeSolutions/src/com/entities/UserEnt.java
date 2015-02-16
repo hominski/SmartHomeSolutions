@@ -23,6 +23,15 @@ this.username = nam;
 this.mail = mai;
 };
 
+public UserEnt(String log, String nam)
+{
+
+this.login = log;
+
+this.username = nam;
+
+};
+
 public Integer getUserId(){return this.userid;};
 public String getLogin(){return this.login;};	
 public String getPassword(){return this.password;};	
