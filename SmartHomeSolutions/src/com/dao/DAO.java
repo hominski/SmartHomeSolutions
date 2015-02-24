@@ -49,6 +49,7 @@ public class DAO {
     public List<UserEnt> getAllEmp() throws ServletException {
         List<UserEnt> allEmp = new ArrayList<UserEnt>();
         Connection conn = null;
+        Locale.setDefault(Locale.ENGLISH);
         try {
             conn = getConnection();
             Statement stmt = conn.createStatement();

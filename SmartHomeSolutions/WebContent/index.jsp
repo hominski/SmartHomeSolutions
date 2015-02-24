@@ -1,25 +1,11 @@
-    <%@page contentType="text/html" pageEncoding="UTF-8" import="com.*" import="com.entities.*"%>
+    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <%@page 
+import="com.dao.*" import="com.entities.*"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
     <html>
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-        <title>Smart Home Solutions</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <meta name="description" content="Smart Home Solutions - Ideas for Your Home" />
-        <meta name="keywords" content="smart house, smart home" />
-        
-
-       <!--   <link rel="stylesheet" type="text/css" href="/css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="/context/css/style1.css" /> -->
-        
-        
-	<style>
-   <%@include file='/WEB-INF/css/demo.css' %>
-   <%@include file='/WEB-INF/css/style1.css' %>
-   </style>
-		<script type="text/javascript" src="/WEB-INF/js/modernizr.custom.86080.js"></script>
+      
     </head>
     <body id="page">
         <ul class="cb-slideshow">
@@ -37,7 +23,9 @@
             <div class="codrops-top">
                 
                 <span class="right">
+              
                     <a href="login.html" >Log In</a>
+               
                     <a href="signup.html" >Sign Up</a>
                 </span>
                 
@@ -56,11 +44,13 @@
             
         </div>
         
-                 <h1>All Users:</h1>
+"TEST"
+
+          <h1>All Users:</h1>
         <jsp:useBean class="com.dao.DAO" id="myDAO" scope="application"/>
         <table border="1">
             <%
-                        for (UserEnt e : DAO.getAllEmp()) {
+                        for (UserEnt e : myDAO.getAllEmp()) {
             %>
             <tr>
                 <td><%=e.getName()%></td>
@@ -70,5 +60,5 @@
                         }
             %>
         </table>
-    </body>
+</body>
 </html>
