@@ -67,7 +67,7 @@ public class Registration extends HttpServlet {
 
         if(password == null || repeat_password == null ||
                 (password.compareTo("") == 0) || (repeat_password.compareTo("") == 0)) {
-            request.setAttribute("password_error", "Type the passwords");
+            request.setAttribute("password_error", "Please, Type the passwords");
             request.getRequestDispatcher("signup.jsp").forward(request, response);
             return;
         }

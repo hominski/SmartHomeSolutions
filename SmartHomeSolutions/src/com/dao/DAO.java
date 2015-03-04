@@ -84,7 +84,8 @@ public class DAO {
      */
     @SuppressWarnings("resource")
 	public int createUser(UserEnt us) throws SQLException {
-        Connection connection = getConnection();
+    	 Locale.setDefault(Locale.ENGLISH);
+    	Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         int result = -1;
         try {
@@ -141,7 +142,8 @@ public class DAO {
      * @return true if exists, false if doesn't
      */
     public boolean checkForEmailUniq(String email) throws SQLException {
-        Connection connection = getConnection();
+    	 Locale.setDefault(Locale.ENGLISH);
+    	Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         boolean result = false;
         try {

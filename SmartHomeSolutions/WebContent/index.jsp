@@ -5,7 +5,17 @@ import="com.dao.*" import="com.entities.*"%>
     "http://www.w3.org/TR/html4/loose.dtd">
     <html>
     <head>
-      
+      <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <title>Smart Home Solutions</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Smart Home Solutions - Ideas for Your Home" />
+        <meta name="keywords" content="smart house, smart home" />
+    
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/style1.css" />
+	
+		<!--<script type="text/javascript" src="js/modernizr.custom.86080.js"></script> -->
     </head>
     <body id="page">
         <ul class="cb-slideshow">
@@ -29,6 +39,14 @@ import="com.dao.*" import="com.entities.*"%>
                     <a href="signup.html" >Sign Up</a>
                 </span>
                 
+                		
+				<span class="left">
+                    
+                    <a href="login.html"> <strong>About</strong> </a>
+                    <a href="signup.html"> <strong>Contact Us</strong> </a>
+					
+                </span>
+                
             <div class="clr"></div>
             </div>
 			
@@ -44,8 +62,6 @@ import="com.dao.*" import="com.entities.*"%>
             
         </div>
         
-"TEST"
-
           <h1>All Users:</h1>
         <jsp:useBean class="com.dao.DAO" id="myDAO" scope="application"/>
         <table border="1">
