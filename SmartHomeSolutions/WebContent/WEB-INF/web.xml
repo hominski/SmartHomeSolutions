@@ -48,6 +48,16 @@
 <servlet-name>Registration</servlet-name>
 <url-pattern>/registration</url-pattern>
 </servlet-mapping>
+
+<servlet>
+<servlet-name>SignIn</servlet-name>
+<servlet-class>com.SignIn</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>SignIn</servlet-name>
+<url-pattern>/signin</url-pattern>
+</servlet-mapping>
  
   <servlet>
   <servlet-name>NewServlet</servlet-name>

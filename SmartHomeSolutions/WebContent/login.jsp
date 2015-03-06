@@ -63,10 +63,26 @@
 				 <div id="login-form">
       <h1>LOG IN</h1>
         <fieldset>
-            <form action="signin" method="get">
-                <input type="text" required value="login" onBlur="if(this.value=='')this.value='login'" onFocus="if(this.value=='login')this.value='' "> 
-                <input type="password" required value="password" onBlur="if(this.value=='')this.value='password'" onFocus="if(this.value=='password')this.value='' "> 
-                <input type="submit" value="Submit">
+            <form action="signin" method="post">
+ <%if(request.getAttribute("login_error") != null && !((String) request.getAttribute("login_error")).isEmpty()){%>
+<div class="alert alert-danger" role="alert">${requestScope.login_error}</div>
+<%}%>
+<h3>Login:</h3>
+<div class="form-group">
+<input type="text" name="login" id="login" value="${requestScope.login}" tabindex="4">
+</div>
+
+<%if(request.getAttribute("password_error") != null && !((String) request.getAttribute("password_error")).isEmpty()){%>
+<div class="alert alert-danger" role="alert">${requestScope.password_error}</div>
+<%}%>
+<h3>Enter Password:</h3>
+<div class="form-group">
+<input type="password" name="password" id="password" tabindex="4">
+</div>
+<input type="hidden" name="check" value="">
+<div>
+<input type="submit" value="Sign Up">
+</div>
             </form>
 			<br>
 			Do not have account? <a href="signup.html"style="color: #A9A9A9">SIGN UP</a>

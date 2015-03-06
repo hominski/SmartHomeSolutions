@@ -38,7 +38,6 @@ public class Registration extends HttpServlet {
         String repeat_password = request.getParameter("repeat_password");
 
         UserEnt userInSession = (UserEnt)request.getSession().getAttribute("user");
-        int userRoleId=0;
         
         request.setAttribute("login", login);
         request.setAttribute("email",email);
@@ -81,7 +80,7 @@ public class Registration extends HttpServlet {
 	
 	try {
 		if (DAO.INSTANCE.checkForEmailUniq(email)) {	
-			UserEnt registeredUser = new UserEnt(0, login, password, phone, name, email);
+			UserEnt registeredUser = new UserEnt(0, login, password, phone, name, email);	
 			int registeredUserId = DAO.INSTANCE.createUser(registeredUser);
             registeredUser = new UserEnt(registeredUserId, login, password, phone, name, email);
             if (userInSession == null) {
@@ -89,14 +88,20 @@ public class Registration extends HttpServlet {
                 request.getSession().setAttribute("user",registeredUser);
                 userInSession = registeredUser;
             }
+            request.getRequestDispatcher("mysmarthome.jsp").forward(request, response);
+		}
+		else{
+			request.setAttribute("email_error", "Such email is already exist!");
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
+            return;
 		}
 	}catch (SQLException e) {
         //Insertion attribute of system error into session and redirect to registration page
         // or to administrator dashboard
        // logger.error(e);
-        request.getSession().setAttribute("error", "system error");
-        if(userInSession != null) response.sendRedirect("index");
-        else response.sendRedirect("index");
+        request.getSession().setAttribute("system_error", "System error:(");
+        if(userInSession != null) request.getRequestDispatcher("index.jsp").forward(request, response);
+        else request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 	}
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -109,7 +114,7 @@ public class Registration extends HttpServlet {
             request.setAttribute("name_error","");
             request.setAttribute("phone_error","");
             request.setAttribute("password_error","");
-            request.setAttribute("capcha_error", "");
+            request.setAttribute("system_error", "");
         }
 
 	}
