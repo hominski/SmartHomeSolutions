@@ -64,7 +64,7 @@
       <h1>LOG IN</h1>
         <fieldset>
             <form action="signin" method="post">
- <%if(request.getAttribute("login_error") != null && !((String) request.getAttribute("login_error")).isEmpty()){%>
+<%if(request.getAttribute("login_error") != null && !((String) request.getAttribute("login_error")).isEmpty()){%>
 <div class="alert alert-danger" role="alert">${requestScope.login_error}</div>
 <%}%>
 <h3>Login:</h3>
@@ -83,7 +83,7 @@
 <div>
 <input type="submit" value="Sign Up">
 </div>
-            </form>
+</form>
 			<br>
 			Do not have account? <a href="signup.html"style="color: #A9A9A9">SIGN UP</a>
 	        </fieldset>	 

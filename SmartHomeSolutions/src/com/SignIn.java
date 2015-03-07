@@ -35,6 +35,7 @@ public class SignIn extends HttpServlet {
         String password = request.getParameter("password");
         
         UserEnt userInSession = (UserEnt)request.getSession().getAttribute("user");
+        if(userInSession == null) {        	
         
         request.setAttribute("login", login);
         request.setAttribute("password",password);
@@ -51,8 +52,41 @@ public class SignIn extends HttpServlet {
             return;
         }
         
+        UserEnt userForLogin = null;
         
-	}
+        try{
+        	
+        	if(DAO.INSTANCE.checkForLoginUniq(login)){
+        		request.setAttribute("login_error", "Such login doesn't exist!");
+	            request.getRequestDispatcher("login.jsp").forward(request, response);
+	            return;
+        	}
+        	//else{
+        	userForLogin = DAO.INSTANCE.getUserByLoginAndPassword(login, password);
+            if (userForLogin == null) {
+                //Insertion attribute of login error into session and redirect to login page
+            	request.setAttribute("password_error", "Wrong password!");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                return;
+            }
+            else{
+            request.getSession().setAttribute("user", userForLogin);	
+            request.getRequestDispatcher("mysmarthome.jsp").forward(request, response);
+            }
+        }
+        catch (SQLException e) {
+            //Insertion attribute of system error into session and redirect to login page
+            //logger.error(e);
+            request.getSession().setAttribute("system_error","System error!");
+            response.sendRedirect("index.jsp");
+        }
+    }else{
+        //Insertion attribute of permission error into session and redirect to home page
+        request.getSession().setAttribute("error", "error");
+        response.sendRedirect("index.jsp");
+    }   
+	
+}      
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     clearError(request);

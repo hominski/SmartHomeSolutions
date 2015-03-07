@@ -79,7 +79,10 @@ public class Registration extends HttpServlet {
        	
 	
 	try {
-		if (DAO.INSTANCE.checkForEmailUniq(email)) {	
+		if (DAO.INSTANCE.checkForEmailUniq(email)) {
+			
+			if(DAO.INSTANCE.checkForLoginUniq(login)){
+			
 			UserEnt registeredUser = new UserEnt(0, login, password, phone, name, email);	
 			int registeredUserId = DAO.INSTANCE.createUser(registeredUser);
             registeredUser = new UserEnt(registeredUserId, login, password, phone, name, email);
@@ -90,11 +93,20 @@ public class Registration extends HttpServlet {
             }
             request.getRequestDispatcher("mysmarthome.jsp").forward(request, response);
 		}
+		
+			else{	
+				request.setAttribute("login_error", "Such login is already exist!");
+	            request.getRequestDispatcher("signup.jsp").forward(request, response);
+	            return;
+			}
+		}	
 		else{
 			request.setAttribute("email_error", "Such email is already exist!");
             request.getRequestDispatcher("signup.jsp").forward(request, response);
             return;
 		}
+
+		
 	}catch (SQLException e) {
         //Insertion attribute of system error into session and redirect to registration page
         // or to administrator dashboard

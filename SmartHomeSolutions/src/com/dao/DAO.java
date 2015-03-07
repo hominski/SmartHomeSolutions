@@ -91,14 +91,14 @@ public class DAO {
         try {
             connection.setAutoCommit(false);
           
-            preparedStatement = connection.prepareStatement("INSERT INTO USERS (ID_USER,EMAIl,PASSWORD,LOGIN,NAME,TELEPHONE)" +
-                    "VALUES (?,?,?,?,?,?)");
-            preparedStatement.setInt(1, us.getUserId());
-            preparedStatement.setString(2, us.getMail());
-            preparedStatement.setString(3, us.getPassword());
-            preparedStatement.setString(4, us.getLogin());
-            preparedStatement.setString(5, us.getName());
-            preparedStatement.setString(6, us.getPhone());
+            preparedStatement = connection.prepareStatement("INSERT INTO USERS (EMAIl,PASSWORD,LOGIN,NAME,TELEPHONE)" +
+                    "VALUES (?,?,?,?,?)");
+          
+            preparedStatement.setString(1, us.getMail());
+            preparedStatement.setString(2, us.getPassword());
+            preparedStatement.setString(3, us.getLogin());
+            preparedStatement.setString(4, us.getName());
+            preparedStatement.setString(5, us.getPhone());
           
             preparedStatement.executeUpdate();
 
@@ -139,7 +139,7 @@ public class DAO {
      * Checks if user with specified email exists in database.
      *
      * @param email email to check
-     * @return true if exists, false if doesn't
+     * @return true if not exists, false if exists
      */
     public boolean checkForEmailUniq(String email) throws SQLException {
     	 Locale.setDefault(Locale.ENGLISH);
@@ -171,5 +171,85 @@ public class DAO {
 
         return result;
     }
-}
+    
+    /*---------------------------------------------------------------------*/
+    
+    /**
+     * Checks if user with specified login exists in database.
+     *
+     * @param login to check
+     * @return true if user not exists, false if exists
+     */
+    public boolean checkForLoginUniq(String login) throws SQLException {
+   	 Locale.setDefault(Locale.ENGLISH);
+   	Connection connection = getConnection();
+       PreparedStatement preparedStatement = null;
+       boolean result = false;
+       try {
+           preparedStatement = connection.prepareStatement("SELECT COUNT(Id_User) RES FROM USERS WHERE LOGIN = ?");
+           preparedStatement.setString(1, login);
+           ResultSet resultSet = preparedStatement.executeQuery();
+           int checkResult = -1;
+           if (resultSet.next()) {
+               checkResult = resultSet.getInt("RES");
+           }
+           if (checkResult == 0) {
+               result = true;
+           } else {
+               result = false;
+           }
 
+       } finally {
+           try {
+               close(connection, preparedStatement);
+           } catch (SQLException e) {
+               //logger.warn("Smth wrong with closing connection or preparedStatement!");
+               e.printStackTrace();
+           }
+       }
+
+       return result;
+   }
+
+
+    /*---------------------------------------------------------------------*/
+
+/**
+ * Get user by its login and password
+ *
+ * @param login    user login
+ * @param password user password
+ * @return found user or null if user does not exist
+ * @throws java.sql.SQLException
+ */
+public UserEnt getUserByLoginAndPassword(String login, String password) throws SQLException {
+    Connection connection = getConnection();
+    UserEnt user = null;
+    PreparedStatement preparedStatement = null;
+    try {
+        preparedStatement = connection.
+                prepareStatement("SELECT *  " +
+                        "FROM USERS  " +
+                        "WHERE LOGIN = ? AND PASSWORD = ? ");
+        preparedStatement.setString(1, login);
+        preparedStatement.setString(2, password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            int idUser = resultSet.getInt("ID_USER");
+            String mail = resultSet.getString("EMAIL");
+            String name = resultSet.getString("NAME");
+            String phone = resultSet.getString("PHONE");
+            user = new UserEnt(idUser, login, password, phone, name, mail);
+        }
+        resultSet.close();
+    } finally {
+        try {
+            close(connection, preparedStatement);
+        } catch (SQLException exc) {
+          //  logger.warn("Can't close connection or preparedStatement!");
+            exc.printStackTrace();
+        }
+    }
+    return user;
+  }
+}
