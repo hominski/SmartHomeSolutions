@@ -61,9 +61,9 @@ public class DAO {
         try {
             conn = getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT login,name FROM USERS");
+            ResultSet rs = stmt.executeQuery("SELECT login,name,email, telephone FROM USERS");
             while (rs.next()) {
-                allEmp.add(new UserEnt(rs.getString(1), rs.getString(2)));
+                allEmp.add(new UserEnt(rs.getString(1), rs.getString(2),rs.getString(3),rs.getString(4)));
             }
         } catch (SQLException ex) {
             throw new ServletException("Cannot obtain connection", ex);

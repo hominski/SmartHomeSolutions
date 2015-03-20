@@ -8,5 +8,6 @@
 </head>
 <body>
 <h3>my home</h3>
+ <a href="users.html"> <strong>All Users</strong> </a>
 </body>
 </html>

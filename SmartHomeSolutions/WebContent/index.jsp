@@ -62,19 +62,6 @@ import="com.dao.*" import="com.entities.*"%>
             
         </div>
         
-          <h1>All Users:</h1>
-        <jsp:useBean class="com.dao.DAO" id="myDAO" scope="application"/>
-        <table border="1">
-            <%
-                        for (UserEnt e : myDAO.getAllEmp()) {
-            %>
-            <tr>
-                <td><%=e.getName()%></td>
-                <td><%=e.getLogin()%></td>
-            </tr>
-            <%
-                        }
-            %>
-        </table>
+          
 </body>
 </html>

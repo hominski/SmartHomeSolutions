@@ -71,15 +71,18 @@ public class SignIn extends HttpServlet {
             }
             else{
             request.getSession().setAttribute("user", userForLogin);	
-            request.getRequestDispatcher("mysmarthome.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
             }
+            
         }
         catch (SQLException e) {
             //Insertion attribute of system error into session and redirect to login page
             //logger.error(e);
             request.getSession().setAttribute("system_error","System error!");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("mysmarthome.jsp");
         }
+
+        
     }else{
         //Insertion attribute of permission error into session and redirect to home page
         request.getSession().setAttribute("error", "error");

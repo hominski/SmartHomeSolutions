@@ -58,6 +58,16 @@
 <servlet-name>SignIn</servlet-name>
 <url-pattern>/signin</url-pattern>
 </servlet-mapping>
+
+<servlet>
+<servlet-name>URedirect</servlet-name>
+<servlet-class>com.URedirect</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>URedirect</servlet-name>
+<url-pattern>/users.html</url-pattern>
+</servlet-mapping>
  
   <servlet>
   <servlet-name>NewServlet</servlet-name>

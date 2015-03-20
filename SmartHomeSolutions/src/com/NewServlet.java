@@ -27,7 +27,7 @@ public class NewServlet extends HttpServlet {
             out.println("<h1>All Emp:</h1>");
             DAO myDAO = (DAO) this.getServletContext().getAttribute("myDAO");
             for (UserEnt e : myDAO.getAllEmp()) {
-                out.println(e.getName() + " " + e.getLogin() + "<br>");
+                out.println(e.getName() + " " + e.getLogin() + e.getMail()+e.getPhone()+"<br>");
             }
             out.println("</body>");
             out.println("</html>");

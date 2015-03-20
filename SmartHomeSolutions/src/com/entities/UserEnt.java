@@ -23,12 +23,16 @@ this.username = nam;
 this.mail = mai;
 };
 
-public UserEnt(String log, String nam)
+public UserEnt(String log, String nam, String mai, String ph)
 {
 
 this.login = log;
 
 this.username = nam;
+
+this.mail = mai;
+
+this.phone = ph;
 
 };
 
