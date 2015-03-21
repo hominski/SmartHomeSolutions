@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import com.entities.*;
 import com.dao.*;
+import com.Info;
 
 
 public class SignIn extends HttpServlet {
@@ -34,7 +35,7 @@ public class SignIn extends HttpServlet {
         String login = request.getParameter("login").toLowerCase();
         String password = request.getParameter("password");
         
-        UserEnt userInSession = (UserEnt)request.getSession().getAttribute("user");
+        UserEnt userInSession = (UserEnt)request.getSession().getAttribute(Info.USER_ATTRIBUTE);
         if(userInSession == null) {        	
         
         request.setAttribute("login", login);
@@ -62,34 +63,36 @@ public class SignIn extends HttpServlet {
 	            return;
         	}
         	//else{
-        	userForLogin = DAO.INSTANCE.getUserByLoginAndPassword(login, password);
+        	userForLogin = DAO.INSTANCE.getUserByLoginAndPassword(login, password);}
+        	  catch (SQLException e) {
+                  //Insertion attribute of system error into session and redirect to login page
+                  request.getSession().setAttribute("system_error","System error!");
+                  request.getRequestDispatcher("login.jsp").forward(request, response);
+              	
+              }
             if (userForLogin == null) {
-                //Insertion attribute of login error into session and redirect to login page
+                //Insertion attribute of password error into session and redirect to login page
             	request.setAttribute("password_error", "Wrong password!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
                 return;
             }
             else{
-            request.getSession().setAttribute("user", userForLogin);	
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getSession().setAttribute(Info.USER_ATTRIBUTE, userForLogin);	
+            //request.getRequestDispatcher("mysmarthome.jsp").forward(request, response);
+            response.sendRedirect("mysmarthome.jsp");
             }
             
         }
-        catch (SQLException e) {
-            //Insertion attribute of system error into session and redirect to login page
-            //logger.error(e);
-            request.getSession().setAttribute("system_error","System error!");
-            response.sendRedirect("mysmarthome.jsp");
-        }
+      
 
         
-    }else{
+/*    else{
         //Insertion attribute of permission error into session and redirect to home page
         request.getSession().setAttribute("error", "error");
-        response.sendRedirect("index.jsp");
-    }   
+       response.sendRedirect("index.jsp");
+   } */  
 	
-}      
+}   
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     clearError(request);

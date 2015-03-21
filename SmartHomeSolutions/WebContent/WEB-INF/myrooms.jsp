@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>My smart home</title>
+<title>My Rooms</title>
 </head>
 <body>
-<h3>my home</h3>
- <a href="myrooms.html"> <strong>All Users</strong> </a>
+
 </body>
 </html>

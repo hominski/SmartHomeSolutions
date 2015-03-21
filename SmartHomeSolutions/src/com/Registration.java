@@ -37,7 +37,7 @@ public class Registration extends HttpServlet {
         String password = request.getParameter("password");
         String repeat_password = request.getParameter("repeat_password");
 
-        UserEnt userInSession = (UserEnt)request.getSession().getAttribute("user");
+        UserEnt userInSession = (UserEnt)request.getSession().getAttribute(Info.USER_ATTRIBUTE);
         
         request.setAttribute("login", login);
         request.setAttribute("email",email);
@@ -88,7 +88,7 @@ public class Registration extends HttpServlet {
             registeredUser = new UserEnt(registeredUserId, login, password, phone, name, email);
             if (userInSession == null) {
                 //Insertion user attribute into session
-                request.getSession().setAttribute("user",registeredUser);
+                request.getSession().setAttribute(Info.USER_ATTRIBUTE,registeredUser);
                 userInSession = registeredUser;
             }
             request.getRequestDispatcher("mysmarthome.jsp").forward(request, response);

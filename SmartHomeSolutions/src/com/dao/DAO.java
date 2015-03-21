@@ -252,4 +252,25 @@ public UserEnt getUserByLoginAndPassword(String login, String password) throws S
     }
     return user;
   }
+
+public List<RoomEnt> getAllRooms(Integer UI) throws ServletException {
+    List<RoomEnt> allRooms = new ArrayList<RoomEnt>();
+    Connection conn = null;
+    Locale.setDefault(Locale.ENGLISH);
+    try {
+        conn = getConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT type, name_r FROM ROOMS WHERE id_user = ?");
+        while (rs.next()) {
+            allRooms.add(new RoomEnt(rs.getString(1), rs.getString(2)));
+        }
+    } catch (SQLException ex) {
+        throw new ServletException("Cannot obtain connection", ex);
+    } finally {
+        if (conn != null) {
+            releaseConnection(conn);
+        }
+    }
+    return allRooms;
+}
 }
