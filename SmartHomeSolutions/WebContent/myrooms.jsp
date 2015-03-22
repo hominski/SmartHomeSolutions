@@ -10,7 +10,7 @@ import="com.dao.*" import="com.entities.*" import="com.Info"%>
 </head>
 <body>
 <%
-    UserEnt user = (UserEnt)request.getSession().getAttribute(Info.USER_ATTRIBUTE);
+    UserEnt user = (UserEnt)request.getSession().getAttribute("user");
     if(user == null){
         response.sendRedirect("index.jsp");}
 %>

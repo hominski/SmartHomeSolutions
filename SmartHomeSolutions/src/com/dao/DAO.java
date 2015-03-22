@@ -238,7 +238,7 @@ public UserEnt getUserByLoginAndPassword(String login, String password) throws S
             int idUser = resultSet.getInt("ID_USER");
             String mail = resultSet.getString("EMAIL");
             String name = resultSet.getString("NAME");
-            String phone = resultSet.getString("PHONE");
+            String phone = resultSet.getString("TELEPHONE");
             user = new UserEnt(idUser, login, password, phone, name, mail);
         }
         resultSet.close();
