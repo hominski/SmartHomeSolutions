@@ -130,13 +130,14 @@ if(e.getRoomType().equalsIgnoreCase("kitchen")){%>
                                    <div class="clear"></div>
         </ul><!--end of Features -->
 	
-       
+<form  method="post" action="addroom">
+
+<input type="submit" value="ADD ROOM">
+
+</form>       
 </div>
-    
-                            
 
 
-         
-        
+                          
 </body>
 </html>

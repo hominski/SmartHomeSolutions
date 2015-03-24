@@ -16,14 +16,15 @@ public class RoomEnt implements Serializable  {
 		this.roomtype = type;
 	};
 	
-	public RoomEnt(String name,String type)
+	public RoomEnt(int ui, String name,String type)
 	{
-	
+	    this.userid = ui; 
 		this.roomname = name;
 		this.roomtype = type;
 	};
 	
-	public Integer getRoomId(){return this.roomid;};
+	public int getUserId(){return this.userid;};
+	public int getRoomId(){return this.roomid;};
 	public String getRoomName(){return this.roomname;};
 	public String getRoomType(){return this.roomtype;};
 	

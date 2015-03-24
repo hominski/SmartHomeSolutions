@@ -89,6 +89,16 @@
 <url-pattern>/logout</url-pattern>
 </servlet-mapping>
  
+<servlet>
+<servlet-name>RoomsController</servlet-name>
+<servlet-class>com.RoomsController</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>RoomsController</servlet-name>
+<url-pattern>/addroom</url-pattern>
+</servlet-mapping> 
+ 
   <servlet>
   <servlet-name>NewServlet</servlet-name>
   <servlet-class>com.NewServlet</servlet-class>

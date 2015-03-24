@@ -291,4 +291,55 @@ public List<RoomEnt> getRoomsByUserId(int userId) throws SQLException {
     return result;
 }
 
+/*----------------------------------------------------------------------------------------*/
+public int addRoom(RoomEnt room) throws SQLException {
+    	 Locale.setDefault(Locale.ENGLISH);
+    	Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        int result = -1;
+        try {
+            connection.setAutoCommit(false);
+          
+            preparedStatement = connection.prepareStatement("INSERT INTO ROOM (ID_USER,TYPE, NAME_R)" +
+                    "VALUES (?,?,?)");
+          
+            preparedStatement.setInt(1, room.getUserId());
+            preparedStatement.setString(2, room.getRoomType());
+            preparedStatement.setString(3, room.getRoomName());
+           
+          
+            preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("SELECT MAX(ID_ROOM) MAX_ID FROM ROOM");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                result = resultSet.getInt("MAX_ID");
+            }
+            connection.commit();
+        } catch (SQLException e) {
+            if (connection != null) {
+               // logger.error("Transaction is being rolled back");
+                try {
+                    connection.rollback();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                 //   logger.error("ROLLBACK transaction Failed of creating new user");
+                }
+            }
+            e.printStackTrace();
+            throw e;
+        } finally {
+            try {
+
+                close(connection, preparedStatement);
+
+            } catch (SQLException e) {
+               // logger.warn("Smth wrong with closing connection or preparedStatement!");
+                e.printStackTrace();
+            }
+
+        }
+        return result;
+    }
+
 }

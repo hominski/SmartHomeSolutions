@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +35,18 @@ public class RoomsController extends HttpServlet{
         if(user == null){
             response.sendRedirect("index");
         }
-        
+    
+    
+    try{
+    	RoomEnt room = new RoomEnt(0, user.getUserId(),"default","kitchen");  
+    	int newRoomid = DAO.INSTANCE.addRoom(room);
+    	request.getRequestDispatcher("myrooms.jsp").forward(request, response);
+    	}
+    	  catch (SQLException e) {
+              //Insertion attribute of system error into session and redirect to login page
+              request.getSession().setAttribute("system_error","System error!");
+              request.getRequestDispatcher("myrooms.jsp").forward(request, response);
+          	
+          }
 }
 }
