@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
  
-public class URedirect extends HttpServlet {
+public class RoomRedirect extends HttpServlet {
  
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher view = request.getRequestDispatcher("users.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("myrooms.jsp");
         try {
             view.forward(request, response);
         } catch (ServletException e) {

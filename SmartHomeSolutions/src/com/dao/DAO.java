@@ -253,24 +253,42 @@ public UserEnt getUserByLoginAndPassword(String login, String password) throws S
     return user;
   }
 
-public List<RoomEnt> getAllRooms(Integer UI) throws ServletException {
-    List<RoomEnt> allRooms = new ArrayList<RoomEnt>();
-    Connection conn = null;
+
+/*---------------------------------------------------------------------------*/
+/**
+ * Get user's rooms by his id
+ *
+ * @param userId
+ * @param password user password
+ * @return found user's rooms or null 
+ * @throws java.sql.SQLException
+ */
+public List<RoomEnt> getRoomsByUserId(int userId) throws SQLException {
+    ArrayList<RoomEnt> result = new ArrayList<RoomEnt>();
+    Connection connection = getConnection();
     Locale.setDefault(Locale.ENGLISH);
+    PreparedStatement preparedStatement = null;
     try {
-        conn = getConnection();
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT type, name_r FROM ROOMS WHERE id_user = ?");
-        while (rs.next()) {
-            allRooms.add(new RoomEnt(rs.getString(1), rs.getString(2)));
-        }
-    } catch (SQLException ex) {
-        throw new ServletException("Cannot obtain connection", ex);
+        preparedStatement = connection.
+                prepareStatement("SELECT id_room, type, name_r FROM ROOM WHERE ID_USER = ?");
+        preparedStatement.setInt(1, userId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            result.add(new RoomEnt(resultSet.getInt("ID_ROOM"),
+                    userId,
+                    resultSet.getString("NAME_R"),
+                    resultSet.getString("TYPE")));
+                    }
     } finally {
-        if (conn != null) {
-            releaseConnection(conn);
+        try {
+            close(connection, preparedStatement);
+        } catch (SQLException exc) {
+           // logger.warn("Can't close connection or preparedStatement!");
+            exc.printStackTrace();
         }
     }
-    return allRooms;
+    
+    return result;
 }
+
 }

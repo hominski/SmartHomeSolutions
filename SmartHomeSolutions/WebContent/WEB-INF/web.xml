@@ -66,7 +66,27 @@
  
 <servlet-mapping>
 <servlet-name>URedirect</servlet-name>
-<url-pattern>/myrooms.html</url-pattern>
+<url-pattern>/users.html</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>RoomRedirect</servlet-name>
+<servlet-class>com.RoomRedirect</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>RoomRedirect</servlet-name>
+<url-pattern>/myrooms</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>Logout</servlet-name>
+<servlet-class>com.Logout</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>Logout</servlet-name>
+<url-pattern>/logout</url-pattern>
 </servlet-mapping>
  
   <servlet>

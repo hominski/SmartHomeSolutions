@@ -63,24 +63,25 @@ public class SignIn extends HttpServlet {
 	            return;
         	}
         	//else{
-        	userForLogin = DAO.INSTANCE.getUserByLoginAndPassword(login, password);}
+        	userForLogin = DAO.INSTANCE.getUserByLoginAndPassword(login, password);
+        	 if (userForLogin == null) {
+                 //Insertion attribute of password error into session and redirect to login page
+             	request.setAttribute("password_error", "Wrong password!");
+                 request.getRequestDispatcher("login.jsp").forward(request, response);
+                 return;
+             }
+             else{
+             request.getSession().setAttribute(Info.USER_ATTRIBUTE, userForLogin);	
+             //request.getRequestDispatcher("mysmarthome.jsp").forward(request, response);
+             response.sendRedirect("mysmarthome.jsp");
+             }}
         	  catch (SQLException e) {
                   //Insertion attribute of system error into session and redirect to login page
                   request.getSession().setAttribute("system_error","System error!");
                   request.getRequestDispatcher("login.jsp").forward(request, response);
               	
               }
-            if (userForLogin == null) {
-                //Insertion attribute of password error into session and redirect to login page
-            	request.setAttribute("password_error", "Wrong password!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-                return;
-            }
-            else{
-            request.getSession().setAttribute(Info.USER_ATTRIBUTE, userForLogin);	
-            //request.getRequestDispatcher("mysmarthome.jsp").forward(request, response);
-            response.sendRedirect("mysmarthome.jsp");
-            }
+           
             
         }
       

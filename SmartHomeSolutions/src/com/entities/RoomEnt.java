@@ -3,12 +3,12 @@ package com.entities;
 import java.io.Serializable;
 
 public class RoomEnt implements Serializable  {
-	private Integer roomid;
-	private Integer userid;
+	private int roomid;
+	private int userid;
 	private String roomname;
 	private String roomtype;
 	
-	public RoomEnt(Integer id, Integer UI, String name,String type)
+	public RoomEnt(int id, int UI, String name,String type)
 	{
 		this.roomid = id;
 		this.userid = UI;
