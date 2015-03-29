@@ -81,7 +81,7 @@
 </div>
 <input type="hidden" name="check" value="">
 <div>
-<input type="submit" value="Sign Up">
+<input type="submit" value="Sign In">
 </div>
 </form>
 			<br>
