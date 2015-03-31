@@ -156,7 +156,7 @@ caption,th {
 	margin-top: 20px;
 	padding: 12px 12px;
   -webkit-appearance: none;
-  width: 200px;
+  width: 100%;
 }
 
 #login-form fieldset form input[type="submit"]:hover {

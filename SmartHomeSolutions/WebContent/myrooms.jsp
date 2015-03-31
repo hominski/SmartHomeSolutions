@@ -2,12 +2,14 @@
     pageEncoding="ISO-8859-1"%>
         <%@page 
 import="com.dao.*" import="com.entities.*" import="com.Info"%>
+<%@ page import ="java.util.*" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-        <title>Smart Home Solutions : My Rooms</title>
+        <title>SHS : My Rooms</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <meta name="description" content="Smart Home Solutions - Ideas for Your Home" />
         <meta name="keywords" content="smart house, smart home" />
@@ -56,7 +58,15 @@ import="com.dao.*" import="com.entities.*" import="com.Info"%>
 <div class="content">
 			<ul class="features">
 <%
+Integer i;
+i=0;
+ArrayList<RoomEnt> RoomList = new ArrayList<RoomEnt>();
 for (RoomEnt e : myDAO.getRoomsByUserId(user.getUserId())) {
+	RoomList.add(new RoomEnt(e.getRoomId(),e.getUserId(),e.getRoomName(),e.getRoomType()));
+	i++;}
+
+for(RoomEnt e : RoomList)
+{
 	if(e.getRoomType().equalsIgnoreCase("living room")){
 		
 %>
@@ -70,15 +80,6 @@ for (RoomEnt e : myDAO.getRoomsByUserId(user.getUserId())) {
                                        Name of the Room : <%=e.getRoomName()%>
                                     </p>
 
-                                 
-                <select>               
-            <%        for (RoomType t : myDAO.getAllRoomTypes()) { %>
-           <option value=<%=t.getRoomType()%>> </option>
-         <% } %>
-         </select>
-                             
-                                 
- 			
                                 </div>
                                 <div class="clear"></div>
                                 </a>
@@ -89,19 +90,31 @@ for (RoomEnt e : myDAO.getRoomsByUserId(user.getUserId())) {
 if(e.getRoomType().equalsIgnoreCase("bathroom")){%>
 
  <li class="feature">
-                                <a href="#">
-                                <div class="bathroom"></div>
-                                <div>
-                                  <h1>Type of the Room : <%=e.getRoomType() %></h1>
-                                    <p>
-                                       Name of the Room : <%=e.getRoomName()%>
-                                    </p>
-                                </div>
-                                <div class="clear"></div>
-                                </a>
-                            </li><!-- end of: FEATURE  -->
-                            
-                            <%;};
+     <a href="#">
+     <div class="bathroom"></div>
+         <div>
+         <form>
+         <p>Name of the Room :  <input type="text" name = "RName" value="<%=e.getRoomType() %>"></p>
+         <p>Type of the Room : 
+                            	<select>
+                                  	<option value="<%=e.getRoomType()%>"><%=e.getRoomType()%></option>    
+            						<%for (RoomType t : myDAO.getAllRoomTypes()){ %>
+          							 <option value="<%=t.getRoomType()%>"><%=t.getRoomType()%></option>
+         							<% } %>
+        						</select>
+         </p>
+     	 </form>
+     	 <div class="edit_save_remove">
+         <input type="submit" value="EDIT">
+         <input type="submit" value="SAVE">
+         <input type="submit" value="REMOVE">
+         </div>
+     </div>
+     <div class="clear"></div>
+     </a>
+ </li>
+ <%;};
+
 if(e.getRoomType().equalsIgnoreCase("bedroom")){%>
 
  <li class="feature">
@@ -112,6 +125,9 @@ if(e.getRoomType().equalsIgnoreCase("bedroom")){%>
                                     <p>
                                        Name of the Room : <%=e.getRoomName()%>
                                     </p>
+                                    
+                                    
+                                    
                                 </div>
                                 <div class="clear"></div>
                                 </a>
@@ -129,12 +145,14 @@ if(e.getRoomType().equalsIgnoreCase("kitchen")){%>
                                     <p>
                                        Name of the Room : <%=e.getRoomName()%>
                                     </p>
+                                    <a href="#">link # <%=i%></a> 
+                                    
                                 </div>
                                 <div class="clear"></div>
                                 </a>
                             </li><!-- end of: FEATURE  -->             
                                                         
-<%;}}%>
+<%;}i++;}%>
 
 
                                    <div class="clear"></div>

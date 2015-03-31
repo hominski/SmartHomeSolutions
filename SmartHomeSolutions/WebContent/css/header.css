@@ -9,10 +9,10 @@
     font-style: normal;
 }
 
-option
+select
 {
-	
-	width:100px;
+		width:100px;
+		color: #888;
 }
 
 * {
@@ -167,6 +167,7 @@ strong {
 	font-weight: bold;
 }
 
+/*------------------ROOMS----------------------*/
 
 .living_room {
 	background: #4997c9 url(../images/livingroomd.jpg) no-repeat;
@@ -264,8 +265,6 @@ strong {
 	margin-bottom: 10px;
 }
 
-/** QQQ KEMi */
-
 .features{
     padding:0;
 	width: 100%;
@@ -316,4 +315,93 @@ strong {
 .features li:hover .camera{
 	background: #555 url(../images/cameras.jpg) no-repeat;
 	
+}
+
+/*------------------EDIT-BUTTON----------------------*/
+
+input.cmn-toggle-yes-no + label {
+  padding: 2px;
+  width: 120px;
+  height: 60px;
+}
+input.cmn-toggle-yes-no + label:before,
+input.cmn-toggle-yes-no + label:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  font-family: "Roboto Slab", serif;
+  font-size: 20px;
+  text-align: center;
+  line-height: 60px;
+}
+input.cmn-toggle-yes-no + label:before {
+  background-color: #dddddd;
+  content: attr(data-off);
+  transition: transform 0.5s;
+  backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no + label:after {
+  background-color: #8ce196;
+  content: attr(data-on);
+  transition: transform 0.5s;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no:checked + label:before {
+  transform: rotateY(180deg);
+}
+input.cmn-toggle-yes-no:checked + label:after {
+  transform: rotateY(0);
+}
+
+
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input[type="submit"] {
+	background-color: #ebebeb;
+	border: none;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: #404040;
+	cursor: pointer;
+	float: left;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 12px 12px;
+  -webkit-appearance: none;
+  width: 200px;
+}
+
+input[type="submit"]:hover {
+	background-color: #e0e0e0;
+}
+
+.edit_save_remove input[type="submit"] {float: right;width: 100%;}
+
+form
+{
+	width: 70%;
+	float: left;
+	
+}
+.edit_save_remove
+{
+	width: 20%;
+	float: right;	
 }
