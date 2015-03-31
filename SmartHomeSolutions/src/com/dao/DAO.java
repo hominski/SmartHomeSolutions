@@ -342,4 +342,36 @@ public int addRoom(RoomEnt room) throws SQLException {
         return result;
     }
 
+/*-----------------------------------------------------------------------------------------------*/
+
+/**
+ * Get all possible room types
+ */
+public List<RoomType> getAllRoomTypes() throws SQLException {
+    ArrayList<RoomType> result = new ArrayList<RoomType>();
+    Connection connection = getConnection();
+    Locale.setDefault(Locale.ENGLISH);
+    PreparedStatement preparedStatement = null;
+    try {
+        preparedStatement = connection.
+                prepareStatement("SELECT id_type, type FROM TYPE_ROOM");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            result.add(new RoomType(resultSet.getInt("ID_TYPE"),
+            		resultSet.getString("TYPE")));
+                    }
+    } finally {
+        try {
+            close(connection, preparedStatement);
+        } catch (SQLException exc) {
+           // logger.warn("Can't close connection or preparedStatement!");
+            exc.printStackTrace();
+        }
+    }
+    
+    return result;
+}
+
+/*----------------------------------------------------------------------------------*/
+
 }

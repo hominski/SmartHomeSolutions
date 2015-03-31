@@ -69,6 +69,16 @@ for (RoomEnt e : myDAO.getRoomsByUserId(user.getUserId())) {
                                     <p>
                                        Name of the Room : <%=e.getRoomName()%>
                                     </p>
+
+                                 
+                <select>               
+            <%        for (RoomType t : myDAO.getAllRoomTypes()) { %>
+           <option value=<%=t.getRoomType()%>> </option>
+         <% } %>
+         </select>
+                             
+                                 
+ 			
                                 </div>
                                 <div class="clear"></div>
                                 </a>
