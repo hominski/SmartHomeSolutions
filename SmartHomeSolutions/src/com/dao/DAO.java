@@ -342,6 +342,46 @@ public int addRoom(RoomEnt room) throws SQLException {
         return result;
     }
 
+
+/*----------------------------------------------------------------------------------------*/
+/** Delete the room by id **/
+public void deleteRoom(int rid) throws SQLException {
+    	 Locale.setDefault(Locale.ENGLISH);
+    	Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            connection.setAutoCommit(false);
+          
+            preparedStatement = connection.prepareStatement("DELETE FROM ROOM WHERE ID_ROOM=?");
+            preparedStatement.setInt(1, rid);
+
+            connection.commit();
+        } catch (SQLException e) {
+            if (connection != null) {
+               // logger.error("Transaction is being rolled back");
+                try {
+                    connection.rollback();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                 //   logger.error("ROLLBACK transaction Failed of creating new user");
+                }
+            }
+            e.printStackTrace();
+            throw e;
+        } finally {
+            try {
+
+                close(connection, preparedStatement);
+
+            } catch (SQLException e) {
+               // logger.warn("Smth wrong with closing connection or preparedStatement!");
+                e.printStackTrace();
+            }
+
+        }
+     
+    }
+
 /*-----------------------------------------------------------------------------------------------*/
 
 /**

@@ -24,9 +24,11 @@ public class RoomEnt implements Serializable  {
 	};
 	
 	public int getUserId(){return this.userid;};
-	public int getRoomId(){return this.roomid;};
+	public int getroomid(){return this.roomid;};
 	public String getRoomName(){return this.roomname;};
+	public void setRoomName(String name){this.roomname = name;};
 	public String getRoomType(){return this.roomtype;};
+	public void setRoomType(String type){this.roomtype = type;};
 	
 	@Override
 	public String toString() 
