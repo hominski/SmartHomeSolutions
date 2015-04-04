@@ -290,6 +290,36 @@ public List<RoomEnt> getRoomsByUserId(int userId) throws SQLException {
     
     return result;
 }
+/*----------------------------------------------------------------------------------------*/
+
+public RoomEnt getRoomById(int roomId) throws SQLException {
+    RoomEnt result = null;
+    Connection connection = getConnection();
+    Locale.setDefault(Locale.ENGLISH);
+    PreparedStatement preparedStatement = null;
+    try {
+        preparedStatement = connection.
+                prepareStatement("SELECT id_user, type, name_r FROM ROOM WHERE ID_ROOM = ?");
+        preparedStatement.setInt(1, roomId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            result = new RoomEnt(roomId,
+            		resultSet.getInt("ID_USER"),
+                    resultSet.getString("NAME_R"),
+                    resultSet.getString("TYPE"));}
+        resultSet.close();
+               
+    } finally {
+        try {
+            close(connection, preparedStatement);
+        } catch (SQLException exc) {
+           // logger.warn("Can't close connection or preparedStatement!");
+            exc.printStackTrace();
+        }
+    }
+    
+    return result;
+}
 
 /*----------------------------------------------------------------------------------------*/
 public int addRoom(RoomEnt room) throws SQLException {
@@ -342,9 +372,47 @@ public int addRoom(RoomEnt room) throws SQLException {
         return result;
     }
 
+/*----------------------------------------------------------------------------------------*/
+public void editRoom(RoomEnt room) throws SQLException {
+    Connection connection = getConnection();
+    PreparedStatement preparedStatement = null;
+    try {
+        connection.setAutoCommit(false);
+        preparedStatement = connection.prepareStatement("UPDATE ROOM SET TYPE = ? AND SET NAME_R = ?");
+        preparedStatement.setString(1, room.getRoomType());
+        preparedStatement.setString(2, room.getRoomName());
+        preparedStatement.executeUpdate();
+        connection.commit();
+    } catch (SQLException e) {
+        if (connection != null) {
+           // logger.error("Transaction is being rolled back");
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+             //   logger.error("ROLLBACK transaction Failed of creating new user");
+            }
+        }
+        e.printStackTrace();
+        throw e;
+    } finally {
+        try {
+
+            close(connection, preparedStatement);
+
+        } catch (SQLException e) {
+           // logger.warn("Smth wrong with closing connection or preparedStatement!");
+            e.printStackTrace();
+        }
+
+    }
+ 
+}
+
 
 /*----------------------------------------------------------------------------------------*/
 /** Delete the room by id **/
+
 public void deleteRoom(int rid) throws SQLException {
     	 Locale.setDefault(Locale.ENGLISH);
     	Connection connection = getConnection();
@@ -352,7 +420,7 @@ public void deleteRoom(int rid) throws SQLException {
         try {
             connection.setAutoCommit(false);
           
-            preparedStatement = connection.prepareStatement("DELETE FROM ROOM WHERE ID_ROOM=?");
+            preparedStatement = connection.prepareStatement("DELETE FROM ROOM WHERE ID_ROOM = ?");
             preparedStatement.setInt(1, rid);
 
             connection.commit();

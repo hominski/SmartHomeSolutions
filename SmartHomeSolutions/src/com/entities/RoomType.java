@@ -9,7 +9,7 @@ this.type_id = id;
 this.room_type = t;
 }
 
-public String getRoomType()
+public String getRoomTypes()
 {return room_type;}
 
 public int getIdType(){

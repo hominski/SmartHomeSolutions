@@ -10,21 +10,30 @@ import="com.dao.*" import="com.entities.*" import="com.Info"%>
   <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-        <title>SHS : My Rooms</title>
+        <title>SHS : Edit Room</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <meta name="description" content="Smart Home Solutions - Ideas for Your Home" />
         <meta name="keywords" content="smart house, smart home" />
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link href="css/header.css" rel="stylesheet" type="text/css">
-    </head>
+</head>
     
-    <body id="page">
+<body id="page">
+
 <%
     UserEnt user = (UserEnt)request.getSession().getAttribute("user");
     if(user == null){
-        response.sendRedirect("index.jsp");}
+    response.sendRedirect("index.jsp");}
 %>
-
+<%
+    int id = Integer.parseInt(request.getParameter("id"));
+    RoomEnt room = DAO.INSTANCE.getRoomById(id);
+    request.setAttribute("room", room);
+%>
+<%
+request.setAttribute("rooms", DAO.INSTANCE.getRoomsByUserId(user.getUserId()));
+request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
+%>
 
 <div class="container">
         <div class="codrops-top">
@@ -56,9 +65,8 @@ import="com.dao.*" import="com.entities.*" import="com.Info"%>
 <div class="content">
 	<ul class="features">
 
-<%
-request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
-%>
+
+
 
 
 <c:forEach var="RoomEnt" items="${rooms}">
@@ -69,9 +77,36 @@ request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
     <div class="kitchen"></div>    
     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
       <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
-        <a href="editroom.jsp?id=${RoomEnt.roomid}">${RoomEnt.getRoomName()}</a>
+      	
+        <p>Name of the Room : 
+        <c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <input type="text" value="${RoomEnt.getRoomName()}">
+        </c:when>
+        <c:otherwise>
+        ${RoomEnt.getRoomName()}
+        </c:otherwise>
+        </c:choose>
+        </p>
+         
+        <p>Type of the Room : 
+        <c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <select>
+        <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
+        <c:forEach var="RoomType" items="${types}">  
+        <option value="${RoomEnt.getRoomType()}">${RoomType.getRoomTypes()}</option>
+        </c:forEach>
+        </select>
+        </c:when>
+        <c:otherwise>
+        ${RoomEnt.getRoomType()}
+        </c:otherwise>
+        </c:choose>
+        </p>
+        
+        
+        <a href="users.jsp?id=${RoomEnt.roomid}">${RoomEnt.getRoomName()}</a>
       </div>
       <div class="edit_remove">
         <input name="id" type="hidden" value="${RoomEnt.roomid}"/>

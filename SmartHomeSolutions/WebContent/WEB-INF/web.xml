@@ -99,6 +99,15 @@
 <url-pattern>/addroom</url-pattern>
 </servlet-mapping> 
  
+<servlet>
+<servlet-name>DeleteRoom</servlet-name>
+<servlet-class>com.DeleteRoom</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>DeleteRoom</servlet-name>
+<url-pattern>/delete</url-pattern>
+</servlet-mapping> 
   <servlet>
   <servlet-name>NewServlet</servlet-name>
   <servlet-class>com.NewServlet</servlet-class>
