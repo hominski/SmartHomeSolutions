@@ -63,88 +63,85 @@ request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
 
 <c:forEach var="RoomEnt" items="${rooms}">
 
+
+<%--KITCHEN--%>
+
+
 <c:if test="${RoomEnt.getRoomType() eq 'kitchen'}">
    <li class="feature">
-    <a href="#">
     <div class="kitchen"></div>    
     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
       <div class="data">
         <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
         <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
-        <a href="editroom.jsp?id=${RoomEnt.roomid}">${RoomEnt.getRoomName()}</a>
+        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
       </div>
       <div class="edit_remove">
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-        <input type="submit" value="EDIT">
-        <input type="submit" value="REMOVE"
-        onclick="if (confirm('Do you want to delete contact: ${RoomEnt.getRoomName()}?')) document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
-      </div>
-    </form>
-    <div class="clear"></div>
-    </a>
-  </li>
-</c:if>
-
-<c:if test="${RoomEnt.getRoomType() eq 'livingroom'}">
-  <li class="feature">
-    <a href="#">
-    <div class="living_room"></div>    
-    <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
-      <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
-      </div>
-      <div class="edit_remove">
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-        <input type="submit" value="EDIT">
+        <a href="editroom.jsp?id=${RoomEnt.roomid}">EDIT</a>
         <input type="submit" value="REMOVE"
         onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
       </div>
     </form>
     <div class="clear"></div>
-    </a>
+   </li>
+</c:if>
+
+<%--LIVINGROOM--%>
+
+<c:if test="${RoomEnt.getRoomType() eq 'livingroom'}">
+  <li class="feature">
+    <div class="living_room"></div>    
+     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+      <div class="data">
+        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
+        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
+        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
+      </div>
+      <div class="edit_remove">
+        <a href="editroom.jsp?id=${RoomEnt.roomid}">EDIT</a>
+        <input type="submit" value="REMOVE"
+        onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
+      </div>
+    </form>
+    <div class="clear"></div>
   </li>
 </c:if>
 
 <c:if test="${RoomEnt.getRoomType() eq 'bedroom'}">
   <li class="feature">
-    <a href="#">
     <div class="bedroom"></div>    
-    <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+ <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
       <div class="data">
         <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
         <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
+        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
       </div>
       <div class="edit_remove">
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-        <input type="submit" value="EDIT">
+        <a href="editroom.jsp?id=${RoomEnt.roomid}">EDIT</a>
         <input type="submit" value="REMOVE"
         onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
       </div>
     </form>
     <div class="clear"></div>
-    </a>
   </li>
 </c:if>
 
 <c:if test="${RoomEnt.getRoomType() eq 'bathroom'}">
   <li class="feature">
-    <a href="#">
     <div class="bathroom"></div>    
-    <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
       <div class="data">
         <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
         <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
+        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
       </div>
       <div class="edit_remove">
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-        <input type="submit" value="EDIT">
+        <a href="editroom.jsp?id=${RoomEnt.roomid}">EDIT</a>
         <input type="submit" value="REMOVE"
         onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
       </div>
     </form>
     <div class="clear"></div>
-    </a>
   </li>
 </c:if>
 

@@ -72,8 +72,16 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
 <c:forEach var="RoomEnt" items="${rooms}">
 
 <c:if test="${RoomEnt.getRoomType() eq 'kitchen'}">
-   <li class="feature">
-    <a href="#">
+   
+   		<c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <li class="feature">
+        </c:when>
+        <c:otherwise>
+        <li class="unactive_feature">
+        </c:otherwise>
+        </c:choose>
+   
     <div class="kitchen"></div>    
     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
       <div class="data">
@@ -104,94 +112,177 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         </c:otherwise>
         </c:choose>
         </p>
-        
-        
-        <a href="users.jsp?id=${RoomEnt.roomid}">${RoomEnt.getRoomName()}</a>
       </div>
       <div class="edit_remove">
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-        <input type="submit" value="EDIT">
-        <input type="submit" value="REMOVE"
-        onclick="if (confirm('Do you want to delete contact: ${RoomEnt.getRoomName()}?')) document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
+      
+      <c:if test="${RoomEnt.roomid == room.getroomid()}">
+        <input type="submit" value="SAVE">
+        <a href="myrooms.jsp">CANCEL</a>
+	  </c:if>
+	  
       </div>
     </form>
     <div class="clear"></div>
-    </a>
-  </li>
+   </li>
 </c:if>
 
 <c:if test="${RoomEnt.getRoomType() eq 'livingroom'}">
-  <li class="feature">
-    <a href="#">
-    <div class="living_room"></div>    
+     	<c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <li class="feature">
+        </c:when>
+        <c:otherwise>
+        <li class="unactive_feature">
+        </c:otherwise>
+        </c:choose>
+   <div class="living_room"></div>    
     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
       <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
+      	
+        <p>Name of the Room : 
+        <c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <input type="text" value="${RoomEnt.getRoomName()}">
+        </c:when>
+        <c:otherwise>
+        ${RoomEnt.getRoomName()}
+        </c:otherwise>
+        </c:choose>
+        </p>
+         
+        <p>Type of the Room : 
+        <c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <select>
+        <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
+        <c:forEach var="RoomType" items="${types}">  
+        <option value="${RoomEnt.getRoomType()}">${RoomType.getRoomTypes()}</option>
+        </c:forEach>
+        </select>
+        </c:when>
+        <c:otherwise>
+        ${RoomEnt.getRoomType()}
+        </c:otherwise>
+        </c:choose>
+        </p>
       </div>
       <div class="edit_remove">
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-        <input type="submit" value="EDIT">
-        <input type="submit" value="REMOVE"
-        onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
+      <c:if test="${RoomEnt.roomid == room.getroomid()}">
+        <input type="submit" value="SAVE">
+        <a href="myrooms.jsp">CANCEL</a>
+	  </c:if>
       </div>
     </form>
     <div class="clear"></div>
-    </a>
-  </li>
+   </li>
 </c:if>
 
+
 <c:if test="${RoomEnt.getRoomType() eq 'bedroom'}">
-  <li class="feature">
-    <a href="#">
+     		<c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <li class="feature">
+        </c:when>
+        <c:otherwise>
+        <li class="unactive_feature">
+        </c:otherwise>
+        </c:choose>
     <div class="bedroom"></div>    
-    <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+        <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
       <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
+      	
+        <p>Name of the Room : 
+        <c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <input type="text" value="${RoomEnt.getRoomName()}">
+        </c:when>
+        <c:otherwise>
+        ${RoomEnt.getRoomName()}
+        </c:otherwise>
+        </c:choose>
+        </p>
+         
+        <p>Type of the Room : 
+        <c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <select>
+        <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
+        <c:forEach var="RoomType" items="${types}">  
+        <option value="${RoomEnt.getRoomType()}">${RoomType.getRoomTypes()}</option>
+        </c:forEach>
+        </select>
+        </c:when>
+        <c:otherwise>
+        ${RoomEnt.getRoomType()}
+        </c:otherwise>
+        </c:choose>
+        </p>
       </div>
       <div class="edit_remove">
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-        <input type="submit" value="EDIT">
-        <input type="submit" value="REMOVE"
-        onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
+      <c:if test="${RoomEnt.roomid == room.getroomid()}">
+        <input type="submit" value="SAVE">
+        <a href="myrooms.jsp">CANCEL</a>
+	  </c:if>
       </div>
     </form>
     <div class="clear"></div>
-    </a>
-  </li>
+   </li>
 </c:if>
 
 <c:if test="${RoomEnt.getRoomType() eq 'bathroom'}">
-  <li class="feature">
-    <a href="#">
+     		<c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <li class="feature">
+        </c:when>
+        <c:otherwise>
+        <li class="unactive_feature">
+        </c:otherwise>
+        </c:choose>
     <div class="bathroom"></div>    
-    <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+        <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
       <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
+      	
+        <p>Name of the Room : 
+        <c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <input type="text" value="${RoomEnt.getRoomName()}">
+        </c:when>
+        <c:otherwise>
+        ${RoomEnt.getRoomName()}
+        </c:otherwise>
+        </c:choose>
+        </p>
+         
+        <p>Type of the Room : 
+        <c:choose>
+        <c:when test="${RoomEnt.roomid == room.getroomid()}">
+        <select>
+        <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
+        <c:forEach var="RoomType" items="${types}">  
+        <option value="${RoomEnt.getRoomType()}">${RoomType.getRoomTypes()}</option>
+        </c:forEach>
+        </select>
+        </c:when>
+        <c:otherwise>
+        ${RoomEnt.getRoomType()}
+        </c:otherwise>
+        </c:choose>
+        </p>
       </div>
       <div class="edit_remove">
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-        <input type="submit" value="EDIT">
-        <input type="submit" value="REMOVE"
-        onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
+      <c:if test="${RoomEnt.roomid == room.getroomid()}">
+        <input type="submit" value="SAVE">
+        <a href="myrooms.jsp">CANCEL</a>
+	  </c:if>
       </div>
     </form>
     <div class="clear"></div>
-    </a>
-  </li>
+   </li>
 </c:if>
 
 </c:forEach>
 <div class="clear"></div>
 </ul><!--end of Features -->
-
-<form  method="post" action="addroom">
-<input type="submit" value="ADD ROOM">
-</form>       
 </div>
-
-               
 </body>
 </html>
