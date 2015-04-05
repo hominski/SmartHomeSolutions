@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entities.*;
+import com.*;
 
 import java.util.Date;
 import java.util.*;
@@ -455,6 +456,7 @@ public void deleteRoom(int rid) throws SQLException {
 /**
  * Get all possible room types
  */
+/*
 public List<RoomType> getAllRoomTypes() throws SQLException {
     ArrayList<RoomType> result = new ArrayList<RoomType>();
     Connection connection = getConnection();
@@ -478,8 +480,116 @@ public List<RoomType> getAllRoomTypes() throws SQLException {
     }
     
     return result;
-}
+}*/
 
 /*----------------------------------------------------------------------------------*/
+/**
+ Create Air Condition
+ */
+public int addAirCondition(AirConditionEnt aircond) throws SQLException {
+	Locale.setDefault(Locale.ENGLISH);
+	Connection connection = getConnection();
+   PreparedStatement preparedStatement = null;
+   int result = -1;
+   try {
+       connection.setAutoCommit(false);
+     
+       preparedStatement = connection.prepareStatement("INSERT INTO AIRCONITION(ACTIVEAC,TEMPERATURE,POWER,NAME_AC,ID_ROOM,ID_TYPE)" +
+               "VALUES (?,?,?,?,?,?)");
+     
+       preparedStatement.setBoolean(1, aircond.getIsActiveCond());
+       preparedStatement.setInt(2, aircond.getCondTemp());
+       preparedStatement.setInt(3, aircond.getCondPower());
+       preparedStatement.setString(4, aircond.getNameCond());
+       preparedStatement.setInt(5, aircond.getRoomId());
+       preparedStatement.setInt(6, aircond.getTypeId());
+       
+       preparedStatement.executeUpdate();
 
+       preparedStatement = connection.prepareStatement("SELECT MAX(ID_AC) MAX_ID FROM AIRCONDITION");
+       ResultSet resultSet = preparedStatement.executeQuery();
+       if (resultSet.next()) {
+           result = resultSet.getInt("MAX_ID");
+       }
+       connection.commit();
+   } catch (SQLException e) {
+       if (connection != null) {
+          // logger.error("Transaction is being rolled back");
+           try {
+               connection.rollback();
+           } catch (SQLException e1) {
+               e1.printStackTrace();
+            //   logger.error("ROLLBACK transaction Failed of creating new user");
+           }
+       }
+       e.printStackTrace();
+       throw e;
+   } finally {
+       try {
+
+           close(connection, preparedStatement);
+
+       } catch (SQLException e) {
+          // logger.warn("Smth wrong with closing connection or preparedStatement!");
+           e.printStackTrace();
+       }
+
+   }
+   return result;
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ Create Lamp
+ */
+public int addLamp(LampEnt lamp) throws SQLException {
+	Locale.setDefault(Locale.ENGLISH);
+	Connection connection = getConnection();
+   PreparedStatement preparedStatement = null;
+   int result = -1;
+   try {
+       connection.setAutoCommit(false);
+     
+       preparedStatement = connection.prepareStatement("INSERT INTO LAMP(ACTIVEL,BRIGHTNESS,COLOUR,NAME_LAMP,ID_ROOM,ID_TYPE)" +
+               "VALUES (?,?,?,?,?,?)");
+     
+       preparedStatement.setBoolean(1, lamp.getIsActiveLamp());
+       preparedStatement.setInt(2, lamp.getBrightness());
+       preparedStatement.setString(3, lamp.getColour());
+       preparedStatement.setString(4, lamp.getNameLamp());
+       preparedStatement.setInt(5, lamp.getRoomId());
+       preparedStatement.setInt(6, lamp.getTypeId());
+       
+       preparedStatement.executeUpdate();
+
+       preparedStatement = connection.prepareStatement("SELECT MAX(ID_LAMP) MAX_ID FROM LAMP");
+       ResultSet resultSet = preparedStatement.executeQuery();
+       if (resultSet.next()) {
+           result = resultSet.getInt("MAX_ID");
+       }
+       connection.commit();
+   } catch (SQLException e) {
+       if (connection != null) {
+          // logger.error("Transaction is being rolled back");
+           try {
+               connection.rollback();
+           } catch (SQLException e1) {
+               e1.printStackTrace();
+            //   logger.error("ROLLBACK transaction Failed of creating new user");
+           }
+       }
+       e.printStackTrace();
+       throw e;
+   } finally {
+       try {
+
+           close(connection, preparedStatement);
+
+       } catch (SQLException e) {
+          // logger.warn("Smth wrong with closing connection or preparedStatement!");
+           e.printStackTrace();
+       }
+
+   }
+   return result;
+}
 }
