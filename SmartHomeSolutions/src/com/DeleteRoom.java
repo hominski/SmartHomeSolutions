@@ -26,7 +26,8 @@ public class DeleteRoom extends HttpServlet{
     
    String id = request.getParameter("id");
    int foo = Integer.parseInt(id);
-
+ System.out.println(id);
+ System.out.println(foo);
     try{
     	 
     	DAO.INSTANCE.deleteRoom(foo);

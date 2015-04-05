@@ -422,7 +422,7 @@ public void deleteRoom(int rid) throws SQLException {
           
             preparedStatement = connection.prepareStatement("DELETE FROM ROOM WHERE ID_ROOM = ?");
             preparedStatement.setInt(1, rid);
-
+            preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
             if (connection != null) {
