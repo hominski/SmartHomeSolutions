@@ -379,9 +379,10 @@ public void editRoom(RoomEnt room) throws SQLException {
     PreparedStatement preparedStatement = null;
     try {
         connection.setAutoCommit(false);
-        preparedStatement = connection.prepareStatement("UPDATE ROOM SET TYPE = ? AND SET NAME_R = ?");
+        preparedStatement = connection.prepareStatement("UPDATE ROOM SET TYPE = ?, NAME_R = ? WHERE ID_ROOM = ?");
         preparedStatement.setString(1, room.getRoomType());
         preparedStatement.setString(2, room.getRoomName());
+        preparedStatement.setInt(3, room.getroomid());
         preparedStatement.executeUpdate();
         connection.commit();
     } catch (SQLException e) {
@@ -456,7 +457,7 @@ public void deleteRoom(int rid) throws SQLException {
 /**
  * Get all possible room types
  */
-/*
+
 public List<RoomType> getAllRoomTypes() throws SQLException {
     ArrayList<RoomType> result = new ArrayList<RoomType>();
     Connection connection = getConnection();
@@ -480,7 +481,7 @@ public List<RoomType> getAllRoomTypes() throws SQLException {
     }
     
     return result;
-}*/
+}
 
 /*----------------------------------------------------------------------------------*/
 /**

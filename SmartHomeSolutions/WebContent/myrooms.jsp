@@ -43,7 +43,10 @@ import="com.dao.*" import="com.entities.*" import="com.Info"%>
 <div class="header_menu">
 	<ul class="vmenu">
 	<li class="myhome"><a href="#">My Smart Home</a></li>
-	<li class="mydevices"><a href="#">My Devices</a></li>
+	<li class="mydevices"><a href="#">Lightening</a></li>
+	<li class="mydevices"><a href="#">Climate</a></li>
+	<li class="mydevices"><a href="#">Security</a></li>
+	<li class="mydevices"><a href="#">Entertainment</a></li>
 	<li class="myrooms"><a href="#">My Rooms</a></li>
 	<li class="mymods"><a href="#">My Modes</a></li>
 	<li class="myprofile"><a href="#">My Profile</a></li>
@@ -67,7 +70,7 @@ request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
 <%--KITCHEN--%>
 
 
-<c:if test="${RoomEnt.getRoomType() eq 'kitchen'}">
+<c:if test="${RoomEnt.getRoomType() eq 'Kitchen'}">
    <li class="feature">
     <div class="kitchen"></div>    
     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
@@ -88,7 +91,7 @@ request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
 
 <%--LIVINGROOM--%>
 
-<c:if test="${RoomEnt.getRoomType() eq 'livingroom'}">
+<c:if test="${RoomEnt.getRoomType() eq 'Living room'}">
   <li class="feature">
     <div class="living_room"></div>    
      <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
@@ -107,7 +110,7 @@ request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
   </li>
 </c:if>
 
-<c:if test="${RoomEnt.getRoomType() eq 'bedroom'}">
+<c:if test="${RoomEnt.getRoomType() eq 'Bedroom'}">
   <li class="feature">
     <div class="bedroom"></div>    
  <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
@@ -126,7 +129,7 @@ request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
   </li>
 </c:if>
 
-<c:if test="${RoomEnt.getRoomType() eq 'bathroom'}">
+<c:if test="${RoomEnt.getRoomType() eq 'Bathroom'}">
   <li class="feature">
     <div class="bathroom"></div>    
      <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">

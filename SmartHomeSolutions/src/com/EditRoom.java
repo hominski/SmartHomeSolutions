@@ -1,30 +1,18 @@
 package com;
 
-import com.dao.*;
-import com.entities.*;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.dao.*;
+import com.entities.RoomEnt;
+import com.entities.UserEnt;
 
-
-public class RoomsController extends HttpServlet{
-	
+public class EditRoom extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("index");
     }
@@ -36,10 +24,15 @@ public class RoomsController extends HttpServlet{
             response.sendRedirect("index");
         }
     
-    
-    try{
-    	RoomEnt room = new RoomEnt(0, user.getUserId(),"Default","Kitchen");  
-    	int newRoomid = DAO.INSTANCE.addRoom(room);
+   String id = request.getParameter("id");
+   String name = request.getParameter("name");
+   String type = request.getParameter("type");
+   int foo = Integer.parseInt(id);
+
+  try{
+    	 
+    	RoomEnt newroom = new RoomEnt(foo, user.getUserId(), name, type);
+    	DAO.INSTANCE.editRoom(newroom);
     	request.getRequestDispatcher("myrooms.jsp").forward(request, response);
     	}
     	  catch (SQLException e) {

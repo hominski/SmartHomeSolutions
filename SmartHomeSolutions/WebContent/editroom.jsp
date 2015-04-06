@@ -71,7 +71,7 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
 
 <c:forEach var="RoomEnt" items="${rooms}">
 
-<c:if test="${RoomEnt.getRoomType() eq 'kitchen'}">
+<c:if test="${RoomEnt.getRoomType() eq 'Kitchen'}">
    
    		<c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
@@ -83,13 +83,14 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         </c:choose>
    
     <div class="kitchen"></div>    
-    <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+    <form id="editForm${RoomEnt.roomid}" action="edit" method="post">
       <div class="data">
       	
         <p>Name of the Room : 
         <c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
-        <input type="text" value="${RoomEnt.getRoomName()}">
+        <input name="name" type="text" value="${RoomEnt.getRoomName()}">
+         <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
         </c:when>
         <c:otherwise>
         ${RoomEnt.getRoomName()}
@@ -100,15 +101,16 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         <p>Type of the Room : 
         <c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
-        <select>
+        <select name="type">
         <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
-        <c:forEach var="RoomType" items="${types}">  
-        <option value="${RoomEnt.getRoomType()}">${RoomType.getRoomTypes()}</option>
-        </c:forEach>
+       <option>Living room</option>
+       <option>Bedroom</option>
+       <option>Bathroom</option>
+       <option>Kitchen</option>
         </select>
         </c:when>
         <c:otherwise>
-        ${RoomEnt.getRoomType()}
+         ${RoomEnt.getRoomType()}
         </c:otherwise>
         </c:choose>
         </p>
@@ -126,7 +128,7 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
    </li>
 </c:if>
 
-<c:if test="${RoomEnt.getRoomType() eq 'livingroom'}">
+<c:if test="${RoomEnt.getRoomType() eq 'Living room'}">
      	<c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
         <li class="feature">
@@ -136,13 +138,14 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         </c:otherwise>
         </c:choose>
    <div class="living_room"></div>    
-    <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+    <form id="editForm${RoomEnt.roomid}" action="edit" method="post">
       <div class="data">
       	
         <p>Name of the Room : 
         <c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
-        <input type="text" value="${RoomEnt.getRoomName()}">
+         <input name="name" type="text" value="${RoomEnt.getRoomName()}">
+         <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
         </c:when>
         <c:otherwise>
         ${RoomEnt.getRoomName()}
@@ -153,11 +156,12 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         <p>Type of the Room : 
         <c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
-        <select>
+        <select name="type">
         <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
-        <c:forEach var="RoomType" items="${types}">  
-        <option value="${RoomEnt.getRoomType()}">${RoomType.getRoomTypes()}</option>
-        </c:forEach>
+       <option>Living room</option>
+       <option>Bedroom</option>
+       <option>Bathroom</option>
+       <option>Kitchen</option>
         </select>
         </c:when>
         <c:otherwise>
@@ -178,7 +182,7 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
 </c:if>
 
 
-<c:if test="${RoomEnt.getRoomType() eq 'bedroom'}">
+<c:if test="${RoomEnt.getRoomType() eq 'Bedroom'}">
      		<c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
         <li class="feature">
@@ -188,13 +192,14 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         </c:otherwise>
         </c:choose>
     <div class="bedroom"></div>    
-        <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+        <form id="editForm${RoomEnt.roomid}" action="edit" method="post">
       <div class="data">
       	
         <p>Name of the Room : 
         <c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
-        <input type="text" value="${RoomEnt.getRoomName()}">
+         <input name="name" type="text" value="${RoomEnt.getRoomName()}">
+         <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
         </c:when>
         <c:otherwise>
         ${RoomEnt.getRoomName()}
@@ -205,11 +210,12 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         <p>Type of the Room : 
         <c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
-        <select>
+        <select name="type">
         <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
-        <c:forEach var="RoomType" items="${types}">  
-        <option value="${RoomEnt.getRoomType()}">${RoomType.getRoomTypes()}</option>
-        </c:forEach>
+       <option>Living room</option>
+       <option>Bedroom</option>
+       <option>Bathroom</option>
+       <option>Kitchen</option>
         </select>
         </c:when>
         <c:otherwise>
@@ -229,7 +235,7 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
    </li>
 </c:if>
 
-<c:if test="${RoomEnt.getRoomType() eq 'bathroom'}">
+<c:if test="${RoomEnt.getRoomType() eq 'Bathroom'}">
      		<c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
         <li class="feature">
@@ -239,13 +245,14 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         </c:otherwise>
         </c:choose>
     <div class="bathroom"></div>    
-        <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+        <form id="editForm${RoomEnt.roomid}" action="edit" method="post">
       <div class="data">
       	
         <p>Name of the Room : 
         <c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
-        <input type="text" value="${RoomEnt.getRoomName()}">
+         <input name="name" type="text" value="${RoomEnt.getRoomName()}">
+         <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
         </c:when>
         <c:otherwise>
         ${RoomEnt.getRoomName()}
@@ -256,11 +263,11 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         <p>Type of the Room : 
         <c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
-        <select>
-        <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
-        <c:forEach var="RoomType" items="${types}">  
-        <option value="${RoomEnt.getRoomType()}">${RoomType.getRoomTypes()}</option>
-        </c:forEach>
+        <select name="type">
+       <option>Living room</option>
+       <option>Bedroom</option>
+       <option>Bathroom</option>
+       <option>Kitchen</option>
         </select>
         </c:when>
         <c:otherwise>
