@@ -47,7 +47,7 @@ import="com.dao.*" import="com.entities.*" import="com.Info"%>
 	<li class="mydevices"><a href="#">Climate</a></li>
 	<li class="mydevices"><a href="#">Security</a></li>
 	<li class="mydevices"><a href="#">Entertainment</a></li>
-	<li class="myrooms"><a href="#">My Rooms</a></li>
+	<li class="myrooms"><a href="myrooms.jsp">My Rooms</a></li>
 	<li class="mymods"><a href="#">My Modes</a></li>
 	<li class="myprofile"><a href="#">My Profile</a></li>
 	</ul>
