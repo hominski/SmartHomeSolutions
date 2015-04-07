@@ -51,9 +51,9 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
 
 <div class="header_menu">
 	<ul class="vmenu">
-	<li class="myhome"><a href="#">My Smart Home</a></li>
-	<li class="mydevices"><a href="#">My Devices</a></li>
-	<li class="myrooms"><a href="#">My Rooms</a></li>
+	<li class="myhome"><a href="mysmarthome.jsp">My Smart Home</a></li>
+	<li class="mydevices"><a href="mydevices.jsp">My Devices</a></li>
+	<li class="myrooms"><a href="myrooms.jsp">My Rooms</a></li>
 	<li class="mymods"><a href="#">My Modes</a></li>
 	<li class="myprofile"><a href="#">My Profile</a></li>
 	</ul>

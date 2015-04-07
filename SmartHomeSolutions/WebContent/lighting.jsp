@@ -1,22 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-        <%@page 
-import="com.dao.*" import="com.entities.*" import="com.Info"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="com.dao.*" import="com.entities.*" import="com.Info"%>
 <%@ page import ="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
   <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-        <title>SHS : My Rooms</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <meta name="description" content="Smart Home Solutions - Ideas for Your Home" />
-        <meta name="keywords" content="smart house, smart home" />
+        <title>SHS : Lighting</title>
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link href="css/header.css" rel="stylesheet" type="text/css">
-    </head>
+  </head>
     
     <body id="page">
 <%
@@ -69,7 +65,6 @@ request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
 
 <%--KITCHEN--%>
 
-
 <c:if test="${RoomEnt.getRoomType() eq 'Kitchen'}">
    <li class="feature">
     <div class="kitchen"></div>    
@@ -87,65 +82,6 @@ request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
     </form>
     <div class="clear"></div>
    </li>
-</c:if>
-
-<%--LIVINGROOM--%>
-
-<c:if test="${RoomEnt.getRoomType() eq 'Living room'}">
-  <li class="feature">
-    <div class="living_room"></div>    
-     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
-      <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-      </div>
-      <div class="edit_remove">
-        <a href="editroom.jsp?id=${RoomEnt.roomid}">EDIT</a>
-        <input type="submit" value="REMOVE"
-        onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
-      </div>
-    </form>
-    <div class="clear"></div>
-  </li>
-</c:if>
-
-<c:if test="${RoomEnt.getRoomType() eq 'Bedroom'}">
-  <li class="feature">
-    <div class="bedroom"></div>    
- <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
-      <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-      </div>
-      <div class="edit_remove">
-        <a href="editroom.jsp?id=${RoomEnt.roomid}">EDIT</a>
-        <input type="submit" value="REMOVE"
-        onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
-      </div>
-    </form>
-    <div class="clear"></div>
-  </li>
-</c:if>
-
-<c:if test="${RoomEnt.getRoomType() eq 'Bathroom'}">
-  <li class="feature">
-    <div class="bathroom"></div>    
-     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
-      <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
-      </div>
-      <div class="edit_remove">
-        <a href="editroom.jsp?id=${RoomEnt.roomid}">EDIT</a>
-        <input type="submit" value="REMOVE"
-        onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
-      </div>
-    </form>
-    <div class="clear"></div>
-  </li>
 </c:if>
 
 </c:forEach>
