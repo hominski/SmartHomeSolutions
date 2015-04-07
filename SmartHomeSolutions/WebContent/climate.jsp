@@ -56,38 +56,40 @@
 	<ul class="features">
 
 <%
-request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
+request.setAttribute("conditions", myDAO.getCondByUserId(user.getUserId()));
 %>
 
 
-<c:forEach var="RoomEnt" items="${rooms}">
+<c:forEach var="AirConditionEnt" items="${conditions}">
 
 
-<c:if test="${RoomEnt.getRoomType() eq 'Kitchen'}">
+
    <li class="feature">
-    <div class="kitchen"></div>    
-    <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+    <div class="condi"></div>    
+    <form id="deleteForm${RoomEnt.getCondId()}" action="deletecondi" method="post">
       <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
+      <p> Name : ${AirConditionEnt.getNameCond()}</p>
+        <p>Active : ${AirConditionEnt.getIsActiveCond()}</p>
+        <p> Temperature : ${AirConditionEnt.getCondTemp}</p>
+        <p> Power : ${AirConditionEnt.getCondPower}</p>
+        <input name="id" type="hidden" value="${AirConditionEnt.getCondId()}"/>
       </div>
       <div class="edit_remove">
-        <a href="editroom.jsp?id=${RoomEnt.roomid}">EDIT</a>
+        <a href="editcondi.jsp?id=${AirConditionEnt.getCondId()}">EDIT</a>
         <input type="submit" value="REMOVE"
-        onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
+        onclick="document.getElementById('deleteForm${AirConditionEnt.getCondId()}').submit();">
       </div>
     </form>
     <div class="clear"></div>
    </li>
-</c:if>
+
 
 </c:forEach>
 <div class="clear"></div>
 </ul><!--end of Features -->
 
-<form  method="post" action="addroom">
-<input type="submit" value="ADD ROOM">
+<form  method="post" action="addcondi">
+<input type="submit" value="ADD Device">
 </form>       
 </div>
 

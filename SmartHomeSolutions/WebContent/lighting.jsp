@@ -56,40 +56,40 @@
 	<ul class="features">
 
 <%
-request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
+request.setAttribute("lamps", myDAO.getLampsByUserId(user.getUserId()));
 %>
 
 
-<c:forEach var="RoomEnt" items="${rooms}">
+<c:forEach var="LampEnt" items="${lamps}">
 
 
-<%--KITCHEN--%>
 
-<c:if test="${RoomEnt.getRoomType() eq 'Kitchen'}">
    <li class="feature">
-    <div class="kitchen"></div>    
-    <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
+    <div class="lamp"></div>    
+    <form id="deleteForm${LampEnt.getLampId()}" action="deletelamp" method="post">
       <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
-        <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
-        <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
+        <p> NAME ${LampEnt.getLampName()}</p>
+        <p>ACTIVE ${LampEnt.getIsActiveLamp()}</p>
+        <p> BRIGHTNESS ${LampEnt.getBrightness()}</p>
+        <p> COLOUR ${LampEnt.getColour()}</p>
+        <input name="id" type="hidden" value="${LampEnt.getLampId()}"/>
       </div>
       <div class="edit_remove">
-        <a href="editroom.jsp?id=${RoomEnt.roomid}">EDIT</a>
+        <a href="editlamp.jsp?id=${LampEnt.getLampId()}">EDIT</a>
         <input type="submit" value="REMOVE"
-        onclick="document.getElementById('deleteForm${RoomEnt.roomid}').submit();">
+        onclick="document.getElementById('deleteForm${LampEnt.getLampId()}').submit();">
       </div>
     </form>
     <div class="clear"></div>
    </li>
-</c:if>
+
 
 </c:forEach>
 <div class="clear"></div>
 </ul><!--end of Features -->
 
-<form  method="post" action="addroom">
-<input type="submit" value="ADD ROOM">
+<form  method="post" action="addlamp">
+<input type="submit" value="ADD DEVICE">
 </form>       
 </div>
 

@@ -80,6 +80,26 @@
 </servlet-mapping>
 
 <servlet>
+<servlet-name>LampRedirect</servlet-name>
+<servlet-class>com.LampRedirect</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>LampRedirect</servlet-name>
+<url-pattern>/lighting</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>CondRedirect</servlet-name>
+<servlet-class>com.CondRedirect</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>CondRedirect</servlet-name>
+<url-pattern>/climate</url-pattern>
+</servlet-mapping>
+
+<servlet>
 <servlet-name>Logout</servlet-name>
 <servlet-class>com.Logout</servlet-class>
 </servlet>

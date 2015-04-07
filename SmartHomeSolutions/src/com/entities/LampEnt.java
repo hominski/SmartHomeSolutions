@@ -40,7 +40,7 @@ public class LampEnt implements Serializable{
 		return this.colour;
 	}
 
-	public String getNameLamp(){
+	public String getLampName(){
 		return this.namelamp;
 	}
 

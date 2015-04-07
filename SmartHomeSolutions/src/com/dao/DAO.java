@@ -556,7 +556,7 @@ public int addLamp(LampEnt lamp) throws SQLException {
        preparedStatement.setBoolean(1, lamp.getIsActiveLamp());
        preparedStatement.setInt(2, lamp.getBrightness());
        preparedStatement.setString(3, lamp.getColour());
-       preparedStatement.setString(4, lamp.getNameLamp());
+       preparedStatement.setString(4, lamp.getLampName());
        preparedStatement.setInt(5, lamp.getRoomId());
        preparedStatement.setInt(6, lamp.getTypeId());
        
@@ -603,21 +603,21 @@ public List<LampEnt> getLampsByUserId(int userId) throws SQLException {
     PreparedStatement preparedStatement = null;
     try {
         preparedStatement = connection.
-                prepareStatement("SELECT L.Id_Lamp, L.Activel, L.Brightness, L.Colour, L.Name_Lamp,L.Id_Room,L.Id_Type, L.Ip_Lamp " +
-                				"From (Users U INNER JOIN ROOM R ON U.Id_User = R.Id_User) " +
-                				"INNER JOIN LAMP L ON L.Id_Room = R.Id_Room " +
-                				"WHERE U.Id_User = ?");
+                prepareStatement("SELECT L.ID_LAMP, L.ACTIVEL, L.BRIGHTNESS, L.COLOUR, L.NAME_LAMP,L.ID_ROOM,L.ID_TYPE, L.IP_LAMP " +
+                				"From (Users U INNER JOIN ROOM R ON U.ID_USER = R.ID_USER) " +
+                				"INNER JOIN LAMP L ON L.ID_ROOM = R.ID_ROOM " +
+                				"WHERE U.ID_USER = ?");
         preparedStatement.setInt(1, userId);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            result.add(new LampEnt(resultSet.getInt("L.Id_Lamp"),
-            		resultSet.getBoolean("L.Activel"),
-            		resultSet.getInt("L.Brightness"),
-                    resultSet.getString("L.Colour"),
-                    resultSet.getString("L.Name_Lamp"),
-                    resultSet.getString("L.Ip_Lamp"),
-                    resultSet.getInt("L.Id_Room"),
-                    resultSet.getInt("L.Id_Type")
+            result.add(new LampEnt(resultSet.getInt("Id_Lamp"),
+            		resultSet.getBoolean("Activel"),
+            		resultSet.getInt("Brightness"),
+                    resultSet.getString("Colour"),
+                    resultSet.getString("Name_Lamp"),
+                    resultSet.getString("Ip_Lamp"),
+                    resultSet.getInt("Id_Room"),
+                    resultSet.getInt("Id_Type")
                     ));
                     }
     } finally {
@@ -647,14 +647,14 @@ public List<AirConditionEnt> getCondByUserId(int userId) throws SQLException {
        preparedStatement.setInt(1, userId);
        ResultSet resultSet = preparedStatement.executeQuery();
        while (resultSet.next()) {
-           result.add(new AirConditionEnt(resultSet.getInt("C.Id_AC"),
-           		resultSet.getBoolean("C.Activeac"),
-           		resultSet.getInt("C.Temperature"),
-                   resultSet.getInt("C.Power"),
-                   resultSet.getString("C.Name_AC"),
-                   resultSet.getString("C.Ip_AC"),
-                   resultSet.getInt("C.Id_Room"),
-                   resultSet.getInt("C.Id_Type")
+           result.add(new AirConditionEnt(resultSet.getInt("Id_AC"),
+           		resultSet.getBoolean("Activeac"),
+           		resultSet.getInt("Temperature"),
+                   resultSet.getInt("Power"),
+                   resultSet.getString("Name_AC"),
+                   resultSet.getString("Ip_AC"),
+                   resultSet.getInt("Id_Room"),
+                   resultSet.getInt("Id_Type")
                    ));
                    }
    } finally {
