@@ -61,20 +61,37 @@ request.setAttribute("lamps", myDAO.getLampsByUserId(user.getUserId()));
 
 
 <c:forEach var="LampEnt" items="${lamps}">
-
-
-
    <li class="feature">
     <div class="lamp"></div>    
     <form id="deleteForm${LampEnt.getLampId()}" action="deletelamp" method="post">
-      <div class="data">
-        <p> NAME ${LampEnt.getLampName()}</p>
-        <p>ACTIVE ${LampEnt.getIsActiveLamp()}</p>
-        <p> BRIGHTNESS ${LampEnt.getBrightness()}</p>
-        <p> COLOUR ${LampEnt.getColour()}</p>
-        <input name="id" type="hidden" value="${LampEnt.getLampId()}"/>
+
+        <div class="data">     	
+        <p>Name of the Lamp :</p>
+        ${LampEnt.getLampName()}
+        
+        
+        
+        <p> Brightness :</p>
+        <input type="range" name="points" min="0" max="100" value="${LampEnt.getBrightness()}" disabled> 
+        
+        
+        <p> Color :</p>
+        <input type="color" name="favcolor" value="${LampEnt.getColour()}" disabled> 
+       
+        
       </div>
       <div class="edit_remove">
+      
+      	<div class="switch">
+  		<c:if test="${LampEnt.getIsActiveLamp() eq true}"> 
+  		<input id="cmn-toggle-7${LampEnt.getLampId()}" class="cmn-toggle cmn-toggle-yes-no" type="checkbox"  checked >
+  		</c:if>
+  		<c:if test="${LampEnt.getIsActiveLamp() eq false}"> 
+  		<input id="cmn-toggle-7${LampEnt.getLampId()}" class="cmn-toggle cmn-toggle-yes-no" type="checkbox" >
+  		</c:if>
+  		
+  		<label for="cmn-toggle-7${LampEnt.getLampId()}" data-on="TURN OFF" data-off="TURN ON"></label>
+		</div>
         <a href="editlamp.jsp?id=${LampEnt.getLampId()}">EDIT</a>
         <input type="submit" value="REMOVE"
         onclick="document.getElementById('deleteForm${LampEnt.getLampId()}').submit();">

@@ -382,7 +382,7 @@ input[type="submit"]:hover {
 .unactive_feature
 {
 	font: 13px Tahoma, sans-serif;
-	background: #c4c4c4;
+	background: #868686;
 	border: 1px solid #777;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -395,3 +395,68 @@ input[type="submit"]:hover {
 	text-align: justify;
 	margin-bottom: 10px;	
 }
+
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input.cmn-toggle-yes-no + label {
+  padding: 0px;
+  width: 100%;
+  height: 45px;
+}
+input.cmn-toggle-yes-no + label:before,
+input.cmn-toggle-yes-no + label:after {
+	
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	
+	
+	width: auto;
+	color: #404040;
+	font-size: 16px;
+	line-height: 40px;
+	float: auto;
+	text-align: center;
+	
+	
+}
+input.cmn-toggle-yes-no + label:before {
+  background-color: #d0373c;
+  color: #404040;
+  content: attr(data-off);
+  transition: transform 0s;
+  backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no + label:after {
+  background-color: #1dc05f;
+  content: attr(data-on);
+  transition: transform 0s;
+  color: #404040;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no:checked + label:before {
+  transform: rotateY(180deg);
+}
+input.cmn-toggle-yes-no:checked + label:after {
+  transform: rotateY(0);
+}
+

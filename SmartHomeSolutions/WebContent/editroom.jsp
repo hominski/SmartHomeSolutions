@@ -106,7 +106,6 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
        <option>Living room</option>
        <option>Bedroom</option>
        <option>Bathroom</option>
-       <option>Kitchen</option>
         </select>
         </c:when>
         <c:otherwise>
@@ -158,7 +157,6 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
         <select name="type">
         <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
-       <option>Living room</option>
        <option>Bedroom</option>
        <option>Bathroom</option>
        <option>Kitchen</option>
@@ -213,7 +211,6 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         <select name="type">
         <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
        <option>Living room</option>
-       <option>Bedroom</option>
        <option>Bathroom</option>
        <option>Kitchen</option>
         </select>
@@ -266,7 +263,6 @@ request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
         <select name="type">
        <option>Living room</option>
        <option>Bedroom</option>
-       <option>Bathroom</option>
        <option>Kitchen</option>
         </select>
         </c:when>

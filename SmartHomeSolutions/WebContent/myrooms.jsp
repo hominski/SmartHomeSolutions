@@ -43,8 +43,8 @@ import="com.dao.*" import="com.entities.*" import="com.Info"%>
 <div class="header_menu">
 	<ul class="vmenu">
 	<li class="myhome"><a href="mysmarthome.jsp">My Smart Home</a></li>
-	<li class="mydevices"><a href="#">Lighting</a></li>
-	<li class="mydevices"><a href="#">Climate</a></li>
+	<li class="mydevices"><a href="lighting.jsp">Lighting</a></li>
+	<li class="mydevices"><a href="climate.jsp">Climate</a></li>
 	<li class="mydevices"><a href="#">Security</a></li>
 	<li class="mydevices"><a href="#">Entertainment</a></li>
 	<li class="myrooms"><a href="myrooms.jsp">My Rooms</a></li>

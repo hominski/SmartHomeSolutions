@@ -322,6 +322,79 @@ public RoomEnt getRoomById(int roomId) throws SQLException {
     return result;
 }
 
+
+/*----------------------------------------------------------------------------------------*/
+
+public LampEnt getLampById(int lampId) throws SQLException {
+    LampEnt result = null;
+    Connection connection = getConnection();
+    Locale.setDefault(Locale.ENGLISH);
+    PreparedStatement preparedStatement = null;
+    try {
+        preparedStatement = connection.
+                prepareStatement("SELECT ACTIVEL, BRIGHTNESS, COLOUR, NAME_LAMP,ID_ROOM,ID_TYPE, IP_LAMP FROM LAMP WHERE ID_LAMP = ?");
+        preparedStatement.setInt(1, lampId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            result = new LampEnt(lampId,
+            		resultSet.getBoolean("Activel"),
+            		resultSet.getInt("Brightness"),
+                    resultSet.getString("Colour"),
+                    resultSet.getString("Name_Lamp"),
+                    resultSet.getString("Ip_Lamp"),
+                    resultSet.getInt("Id_Room"),
+                    resultSet.getInt("Id_Type"));}
+        resultSet.close();
+               
+    } finally {
+        try {
+            close(connection, preparedStatement);
+        } catch (SQLException exc) {
+           // logger.warn("Can't close connection or preparedStatement!");
+            exc.printStackTrace();
+        }
+    }
+    
+    return result;
+}
+
+
+/*----------------------------------------------------------------------------------------*/
+
+public AirConditionEnt getCondById(int condId) throws SQLException {
+	AirConditionEnt result = null;
+    Connection connection = getConnection();
+    Locale.setDefault(Locale.ENGLISH);
+    PreparedStatement preparedStatement = null;
+    try {
+        preparedStatement = connection.
+                prepareStatement("SELECT  Activeac, Temperature, Power, Name_AC,Id_Room,Id_Type, Ip_AC FROM AIRCONDITION WHERE ID_AC = ?");
+        preparedStatement.setInt(1, condId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            result = new AirConditionEnt(condId,
+               		resultSet.getBoolean("Activeac"),
+               		resultSet.getInt("Temperature"),
+                       resultSet.getInt("Power"),
+                       resultSet.getString("Name_AC"),
+                       resultSet.getString("Ip_AC"),
+                       resultSet.getInt("Id_Room"),
+                       resultSet.getInt("Id_Type"));}
+        resultSet.close();
+               
+    } finally {
+        try {
+            close(connection, preparedStatement);
+        } catch (SQLException exc) {
+           // logger.warn("Can't close connection or preparedStatement!");
+            exc.printStackTrace();
+        }
+    }
+    
+    return result;
+}
+
+
 /*----------------------------------------------------------------------------------------*/
 public int addRoom(RoomEnt room) throws SQLException {
     	 Locale.setDefault(Locale.ENGLISH);
