@@ -593,4 +593,79 @@ public int addLamp(LampEnt lamp) throws SQLException {
    }
    return result;
 }
+/**
+ Get all lamp devices by user id 
+  */
+public List<LampEnt> getLampsByUserId(int userId) throws SQLException {
+    ArrayList<LampEnt> result = new ArrayList<LampEnt>();
+    Connection connection = getConnection();
+    Locale.setDefault(Locale.ENGLISH);
+    PreparedStatement preparedStatement = null;
+    try {
+        preparedStatement = connection.
+                prepareStatement("SELECT L.Id_Lamp, L.Activel, L.Brightness, L.Colour, L.Name_Lamp,L.Id_Room,L.Id_Type, L.Ip_Lamp " +
+                				"From (Users U INNER JOIN ROOM R ON U.Id_User = R.Id_User) " +
+                				"INNER JOIN LAMP L ON L.Id_Room = R.Id_Room " +
+                				"WHERE U.Id_User = ?");
+        preparedStatement.setInt(1, userId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            result.add(new LampEnt(resultSet.getInt("L.Id_Lamp"),
+            		resultSet.getBoolean("L.Activel"),
+            		resultSet.getInt("L.Brightness"),
+                    resultSet.getString("L.Colour"),
+                    resultSet.getString("L.Name_Lamp"),
+                    resultSet.getString("L.Ip_Lamp"),
+                    resultSet.getInt("L.Id_Room"),
+                    resultSet.getInt("L.Id_Type")
+                    ));
+                    }
+    } finally {
+        try {
+            close(connection, preparedStatement);
+        } catch (SQLException exc) {
+           // logger.warn("Can't close connection or preparedStatement!");
+            exc.printStackTrace();
+        }
+    }   
+    return result;
+}
+/**
+Get all condition devices by user id 
+ */
+public List<AirConditionEnt> getCondByUserId(int userId) throws SQLException {
+   ArrayList<AirConditionEnt> result = new ArrayList<AirConditionEnt>();
+   Connection connection = getConnection();
+   Locale.setDefault(Locale.ENGLISH);
+   PreparedStatement preparedStatement = null;
+   try {
+       preparedStatement = connection.
+               prepareStatement("SELECT C.Id_AC, C.Activeac, C.Temperature, C.Power, C.Name_AC,C.Id_Room,C.Id_Type, C.Ip_AC " +
+               				"From (Users U INNER JOIN ROOM R ON U.Id_User = R.Id_User) " +
+               				"INNER JOIN AirCondition C ON C.Id_Room = R.Id_Room " +
+               				"WHERE U.Id_User = ?");
+       preparedStatement.setInt(1, userId);
+       ResultSet resultSet = preparedStatement.executeQuery();
+       while (resultSet.next()) {
+           result.add(new AirConditionEnt(resultSet.getInt("C.Id_AC"),
+           		resultSet.getBoolean("C.Activeac"),
+           		resultSet.getInt("C.Temperature"),
+                   resultSet.getInt("C.Power"),
+                   resultSet.getString("C.Name_AC"),
+                   resultSet.getString("C.Ip_AC"),
+                   resultSet.getInt("C.Id_Room"),
+                   resultSet.getInt("C.Id_Type")
+                   ));
+                   }
+   } finally {
+       try {
+           close(connection, preparedStatement);
+       } catch (SQLException exc) {
+          // logger.warn("Can't close connection or preparedStatement!");
+           exc.printStackTrace();
+       }
+   }   
+   return result;
+}
+
 }
