@@ -527,6 +527,85 @@ public void deleteRoom(int rid) throws SQLException {
 
 /*-----------------------------------------------------------------------------------------------*/
 
+/** Delete the lamp by id **/
+
+public void deleteLamp(int lid) throws SQLException {
+    	 Locale.setDefault(Locale.ENGLISH);
+    	Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            connection.setAutoCommit(false);
+          
+            preparedStatement = connection.prepareStatement("DELETE FROM LAMP WHERE ID_LAMP = ?");
+            preparedStatement.setInt(1, lid);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            if (connection != null) {
+               // logger.error("Transaction is being rolled back");
+                try {
+                    connection.rollback();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                 //   logger.error("ROLLBACK transaction Failed of creating new user");
+                }
+            }
+            e.printStackTrace();
+            throw e;
+        } finally {
+            try {
+
+                close(connection, preparedStatement);
+
+            } catch (SQLException e) {
+               // logger.warn("Smth wrong with closing connection or preparedStatement!");
+                e.printStackTrace();
+            }
+
+        }
+     
+    }
+
+/*-----------------------------------------------------------------------------------------------*/
+
+public void editLamp(String name, String brightness, String colour, int lampid) throws SQLException {
+    Connection connection = getConnection();
+    PreparedStatement preparedStatement = null;
+    try {
+        connection.setAutoCommit(false);
+        preparedStatement = connection.prepareStatement("UPDATE LAMP SET NAME_LAMP = ?, BRIGHTNESS = ?, COLOUR =? WHERE ID_LAMP = ?");
+        preparedStatement.setString(1, name);
+        preparedStatement.setString(2, brightness);
+        preparedStatement.setString(3, colour);
+        preparedStatement.setInt(4, lampid);
+        preparedStatement.executeUpdate();
+        connection.commit();
+    } catch (SQLException e) {
+        if (connection != null) {
+           // logger.error("Transaction is being rolled back");
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+             //   logger.error("ROLLBACK transaction Failed of creating new user");
+            }
+        }
+        e.printStackTrace();
+        throw e;
+    } finally {
+        try {
+
+            close(connection, preparedStatement);
+
+        } catch (SQLException e) {
+           // logger.warn("Smth wrong with closing connection or preparedStatement!");
+            e.printStackTrace();
+        }
+
+    }
+ 
+}
+/*----------------------------------------------------------------------------------------*/
 /**
  * Get all possible room types
  */

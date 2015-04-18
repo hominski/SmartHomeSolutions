@@ -32,7 +32,7 @@ import="com.dao.*" import="com.entities.*" import="com.Info"%>
 %>
 <%
 request.setAttribute("rooms", DAO.INSTANCE.getRoomsByUserId(user.getUserId()));
-request.setAttribute("types", DAO.INSTANCE.getAllRoomTypes());
+
 %>
 
 <div class="container">

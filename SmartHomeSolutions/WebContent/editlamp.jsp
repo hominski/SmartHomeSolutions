@@ -75,7 +75,7 @@ request.setAttribute("lamps", DAO.INSTANCE.getLampsByUserId(user.getUserId()));
         </c:choose>
       
     <div class="lamp"></div>    
-    <form id="deleteForm${LampEnt.getLampId()}" action="deletelamp" method="post">
+    <form id="editForm${LampEnt.getLampId()}" action="editlamp" method="post">
       
         <div class="data">     	
         <p>Name of the Lamp :</p>
@@ -93,10 +93,10 @@ request.setAttribute("lamps", DAO.INSTANCE.getLampsByUserId(user.getUserId()));
         <p> Brightness :</p>
         <c:choose>
         <c:when test="${LampEnt.getLampId() == lamp.getLampId()}">
-        <input type="range" name="points" min="0" max="100" value="${LampEnt.getBrightness()}"> 
+        <input type="range" name="brightness" min="0" max="100" value="${LampEnt.getBrightness()}"> 
         </c:when>
         <c:otherwise>
-        <input type="range" name="points" min="0" max="100" value="${LampEnt.getBrightness()}" disabled> 
+        <input type="range" name="brightness" min="0" max="100" value="${LampEnt.getBrightness()}" disabled> 
         </c:otherwise>
         </c:choose>
         
@@ -137,7 +137,7 @@ request.setAttribute("lamps", DAO.INSTANCE.getLampsByUserId(user.getUserId()));
    
 
     <div class="kitchen"></div>    
-    <form id="editForm${RoomEnt.roomid}" action="edit" method="post">
+    <form id="editForm${RoomEnt.roomid}" action="editlamp" method="post">
       <div class="data">
 
       </div>

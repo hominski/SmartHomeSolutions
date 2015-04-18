@@ -138,6 +138,27 @@
 <servlet-name>EditRoom</servlet-name>
 <url-pattern>/edit</url-pattern>
 </servlet-mapping> 
+
+
+<servlet>
+<servlet-name>DeleteLamp</servlet-name>
+<servlet-class>com.DeleteLamp</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>DeleteLamp</servlet-name>
+<url-pattern>/deletelamp</url-pattern>
+</servlet-mapping> 
+
+<servlet>
+<servlet-name>EditLamp</servlet-name>
+<servlet-class>com.EditLamp</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+<servlet-name>EditLamp</servlet-name>
+<url-pattern>/editlamp</url-pattern>
+</servlet-mapping> 
   
   <servlet>
   <servlet-name>NewServlet</servlet-name>

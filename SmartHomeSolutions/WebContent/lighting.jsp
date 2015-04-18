@@ -93,6 +93,7 @@ request.setAttribute("lamps", myDAO.getLampsByUserId(user.getUserId()));
   		<label for="cmn-toggle-7${LampEnt.getLampId()}" data-on="TURN OFF" data-off="TURN ON"></label>
 		</div>
         <a href="editlamp.jsp?id=${LampEnt.getLampId()}">EDIT</a>
+                 <input name="id" type="hidden" value="${LampEnt.getLampId()}"/>
         <input type="submit" value="REMOVE"
         onclick="document.getElementById('deleteForm${LampEnt.getLampId()}').submit();">
       </div>
