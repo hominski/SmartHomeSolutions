@@ -75,7 +75,7 @@ request.setAttribute("rooms", myDAO.getRoomsByUserId(user.getUserId()));
     <div class="kitchen"></div>    
     <form id="deleteForm${RoomEnt.roomid}" action="delete" method="post">
       <div class="data">
-        <p>Type of the Room : ${RoomEnt.getRoomType()}</p>
+        <p>Type of the room : ${RoomEnt.getRoomType()}</p>
         <p> Name of the Room : ${RoomEnt.getRoomName()}</p>
         <input name="id" type="hidden" value="${RoomEnt.roomid}"/>
       </div>

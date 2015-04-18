@@ -261,6 +261,7 @@ request.setAttribute("rooms", DAO.INSTANCE.getRoomsByUserId(user.getUserId()));
         <c:choose>
         <c:when test="${RoomEnt.roomid == room.getroomid()}">
         <select name="type">
+        <option value="${RoomEnt.getRoomType()}">${RoomEnt.getRoomType()}</option>
        <option>Living room</option>
        <option>Bedroom</option>
        <option>Kitchen</option>
