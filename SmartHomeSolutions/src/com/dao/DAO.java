@@ -322,6 +322,105 @@ public RoomEnt getRoomById(int roomId) throws SQLException {
     return result;
 }
 
+/*----------------------------------------------------------------------------------------*/
+
+public List<Mode> getModesByUserId(int userId) throws SQLException {
+	ArrayList<Mode> result = new ArrayList<Mode>();
+    Connection connection = getConnection();
+    Locale.setDefault(Locale.ENGLISH);
+    PreparedStatement preparedStatement = null;
+    try {
+        preparedStatement = connection.
+                prepareStatement("SELECT ID_MODES,NAME_MODE,TIME_BEGIN,TIME_END,ACTIVE,ACTIVE_CAMERA, ACTIVE_LAMP, "+
+                				"BRIGHTNESS_LAMP, COLOUR_LAMP, ACTIVE_AC, TEMPERATURE_AC, ACTIVE_MUSIC,VOLUME_MUSIC, "+
+                		         "TYPE_MUSIC FROM MODES WHERE ID_USER = ?");
+        preparedStatement.setInt(1, userId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+        	GregorianCalendar beginning = new GregorianCalendar();
+            Time dateOfBeg = resultSet.getTime("TIME_BEGIN");
+            beginning.set(dateOfBeg.getHours(), dateOfBeg.getMinutes(), dateOfBeg.getSeconds());
+            GregorianCalendar end = new GregorianCalendar();
+            Time dateOfEnd = resultSet.getTime("TIME_END");
+            end.set(dateOfEnd.getHours(), dateOfEnd.getMinutes(), dateOfEnd.getSeconds());
+                    result.add(new Mode(resultSet.getInt("ID_MODES"), 1,
+            		resultSet.getString("NAME_MODE"),
+            		beginning, end,
+            		resultSet.getBoolean("ACTIVE"),
+                    resultSet.getBoolean("ACTIVE_CAMERA"),
+                    resultSet.getBoolean("ACTIVE_LAMP"),
+                    resultSet.getInt("BRIGHTNESS_LAMP"),
+                    resultSet.getString("COLOUR_LAMP"),
+                    resultSet.getBoolean("ACTIVE_AC"),
+                    resultSet.getInt("TEMPERATURE_AC"),
+                    resultSet.getBoolean("ACTIVE_MUSIC"),
+                    resultSet.getInt("VOLUME_MUSIC"),
+                    resultSet.getString("TYPE_MUSIC")));}
+        resultSet.close();
+               
+    } finally {
+        try {
+            close(connection, preparedStatement);
+        } catch (SQLException exc) {
+           // logger.warn("Can't close connection or preparedStatement!");
+            exc.printStackTrace();
+        }
+    }
+    
+    return result;
+}
+
+
+/*----------------------------------------------------------------------------------------*/
+
+
+public Mode getModeById(int modeId) throws SQLException {
+    Mode result = null;
+    Connection connection = getConnection();
+    Locale.setDefault(Locale.ENGLISH);
+    PreparedStatement preparedStatement = null;
+    try {
+        preparedStatement = connection.
+                prepareStatement("SELECT ID_USER,NAME_MODE,TIME_BEGIN,TIME_END,ACTIVE,ACTIVE_CAMERA"+
+                                 "ACTIVE_LAMP, BRIGHTNESS_LAMP, COLOUR_LAMP, ACTIVE_AC"+
+                		         "TEMPERATURE_AC, ACTIVE_MUSIC,VOLUME_MUSIC, TYPE_MUSIC"+
+                                 "FROM MODES WHERE ID_USER = ?");
+        preparedStatement.setInt(1, modeId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+        	GregorianCalendar beginning = new GregorianCalendar();
+            Date dateOfBeg = resultSet.getDate("TIME_BEGIN");
+            beginning.set(dateOfBeg.getYear(), dateOfBeg.getMonth(), dateOfBeg.getDay());
+            GregorianCalendar end = new GregorianCalendar();
+            Date dateOfEnd = resultSet.getDate("TIME_END");
+            end.set(dateOfEnd.getYear(), dateOfEnd.getMonth(), dateOfEnd.getDay());
+            result = new Mode(1,resultSet.getInt("ID_USER"),
+            		resultSet.getString("COLOUR_LAMP"),
+            		beginning, end,
+            		resultSet.getBoolean("ACTIVE"),
+                    resultSet.getBoolean("ACTIVE_CAMERA"),
+                    resultSet.getBoolean("ACTIVE_LAMP"),
+                    resultSet.getInt("BRIGHTNESS_LAMP"),
+                    resultSet.getString("COLOUR_LAMP"),
+                    resultSet.getBoolean("ACTIVE_AC"),
+                    resultSet.getInt("TEMPERATURE_AC"),
+                    resultSet.getBoolean("ACTIVE_MUSIC"),
+                    resultSet.getInt("VOLUME_MUSIC"),
+                    resultSet.getString("TYPE_MUSIC"));}
+        resultSet.close();
+               
+    } finally {
+        try {
+            close(connection, preparedStatement);
+        } catch (SQLException exc) {
+           // logger.warn("Can't close connection or preparedStatement!");
+            exc.printStackTrace();
+        }
+    }
+    
+    return result;
+}
+
 
 /*----------------------------------------------------------------------------------------*/
 

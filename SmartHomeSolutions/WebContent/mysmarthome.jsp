@@ -73,7 +73,7 @@ function UsersTimes(){
 	<li class="mydevices"><a href="#">Security</a></li>
 	<li class="mydevices"><a href="#">Entertainment</a></li>
 	<li class="myrooms"><a href="myrooms.jsp">My Rooms</a></li>
-	<li class="mymods"><a href="#">My Modes</a></li>
+	<li class="mymods"><a href="mymodes.jsp">My Modes</a></li>
 	<li class="myprofile"><a href="#">My Profile</a></li>
 	</ul>
 </div>
